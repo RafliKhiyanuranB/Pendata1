@@ -1,0 +1,18 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: business-understanding
+  title: Business Understanding
+- file: data-understanding
+  title: Data Understanding
+- file: data-preparation
+  title: Data Preparation
+- file: modelling
+  title: Modelling
+- file: deployment
+  title: Deployment
+- file: laporan-analisis-kesuburan-tanah
+  title: Laporan Analisis Kesuburan Tanah
