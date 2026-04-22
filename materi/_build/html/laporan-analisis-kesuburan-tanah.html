@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=13ac56ea" />
@@ -61,6 +61,8 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'laporan-analisis-kesuburan-tanah';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -171,6 +173,9 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="business-understanding.html">Business Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-understanding.html">Data Understanding</a></li>
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="data-preparation.html">Data Preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modelling.html">Modelling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
@@ -297,7 +302,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -313,6 +320,110 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ujian-tengah-semester-penambangan-data">Ujian Tengah Semester — Penambangan Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-knime-analytics-platform">Menggunakan KNIME Analytics Platform</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daftar-isi">Daftar Isi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-dataset">Deskripsi Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-label">Distribusi Label</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-missing-value-pada-dataset">Ringkasan Missing Value pada Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-1-excel-reader-import-data">2. Node 1 — Excel Reader (Import Data)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#screenshot-knime">Screenshot KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-node">Deskripsi Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-yang-digunakan">Konfigurasi yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-output">Hasil Output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observasi-awal">Observasi Awal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-2-missing-value-penanganan-nilai-hilang">3. Node 2 — Missing Value (Penanganan Nilai Hilang)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Screenshot KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Deskripsi Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Konfigurasi yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-detail-setiap-metode">Penjelasan Detail Setiap Metode</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-number-integer-mean">a) Number (Integer) — Mean</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-number-float-do-nothing">b) Number (Float) — Do Nothing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-string-most-frequent-value-modus">c) String — Most Frequent Value (Modus)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Hasil Output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-3-one-to-many-encoding-kategorikal">4. Node 3 — One to Many (Encoding Kategorikal)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Screenshot KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Deskripsi Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Konfigurasi yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mekanisme-one-hot-encoding">Mekanisme One-Hot Encoding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Hasil Output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-4-normalizer-normalisasi-data">5. Node 4 — Normalizer (Normalisasi Data)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Screenshot KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Deskripsi Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Konfigurasi yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-normalisasi-min-max">Rumus Normalisasi Min-Max</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Hasil Output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-5-table-partitioner-pembagian-data">6. Node 5 — Table Partitioner (Pembagian Data)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Screenshot KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Deskripsi Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Konfigurasi yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-detail-konfigurasi">Penjelasan Detail Konfigurasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-relative-size-80">a) Relative Size — 80%</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-stratified-sampling">b) Stratified Sampling</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-fixed-random-seed">c) Fixed Random Seed</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Hasil Output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-6-k-nearest-neighbor-klasifikasi-knn">7. Node 6 — K Nearest Neighbor (Klasifikasi KNN)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Screenshot KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Deskripsi Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Konfigurasi yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mekanisme-kerja-algoritma-knn">Mekanisme Kerja Algoritma KNN</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-hitung-jarak-euclidean">Langkah 1 — Hitung Jarak Euclidean</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-temukan-k-tetangga-terdekat">Langkah 2 — Temukan K Tetangga Terdekat</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-voting-mayoritas">Langkah 3 — Voting Mayoritas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengapa-k-5">Mengapa k = 5?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#koneksi-node">Koneksi Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Hasil Output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-7-scorer-evaluasi-model">8. Node 7 — Scorer (Evaluasi Model)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Screenshot KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Deskripsi Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">Konfigurasi yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-confusion-matrix">Hasil Confusion Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-metrik-evaluasi">Perhitungan Metrik Evaluasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-accuracy-akurasi">a) Accuracy (Akurasi)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-precision-presisi-untuk-kelas-subur">b) Precision (Presisi) — untuk kelas “Subur”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-recall-sensitivitas-untuk-kelas-subur">c) Recall (Sensitivitas) — untuk kelas “Subur”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-f1-score">d) F1-Score</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-spesifisitas-untuk-kelas-tidak-subur">e) Spesifisitas — untuk kelas “Tidak Subur”</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-hasil">Interpretasi Hasil</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-workflow-lengkap">9. Alur Workflow Lengkap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-transformasi-data-per-node">Ringkasan Transformasi Data per Node</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">10. Kesimpulan</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -324,7 +435,800 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="laporan-analisis-kesuburan-tanah">
 <h1>Laporan Analisis Kesuburan Tanah<a class="headerlink" href="#laporan-analisis-kesuburan-tanah" title="Link to this heading">#</a></h1>
-<p>Halaman ini digunakan untuk menyajikan ringkasan hasil analisis kesuburan tanah secara terstruktur.</p>
+<section id="ujian-tengah-semester-penambangan-data">
+<h2>Ujian Tengah Semester — Penambangan Data<a class="headerlink" href="#ujian-tengah-semester-penambangan-data" title="Link to this heading">#</a></h2>
+<section id="menggunakan-knime-analytics-platform">
+<h3>Menggunakan KNIME Analytics Platform<a class="headerlink" href="#menggunakan-knime-analytics-platform" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<hr class="docutils" />
+<section id="daftar-isi">
+<h2>Daftar Isi<a class="headerlink" href="#daftar-isi" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#1-pendahuluan"><span class="xref myst">Pendahuluan</span></a></p></li>
+<li><p><a class="reference internal" href="#2-node-1--excel-reader-import-data"><span class="xref myst">Node 1 — Excel Reader (Import Data)</span></a></p></li>
+<li><p><a class="reference internal" href="#3-node-2--missing-value-penanganan-nilai-hilang"><span class="xref myst">Node 2 — Missing Value (Penanganan Nilai Hilang)</span></a></p></li>
+<li><p><a class="reference internal" href="#4-node-3--one-to-many-encoding-kategorikal"><span class="xref myst">Node 3 — One to Many (Encoding Kategorikal)</span></a></p></li>
+<li><p><a class="reference internal" href="#5-node-4--normalizer-normalisasi-data"><span class="xref myst">Node 4 — Normalizer (Normalisasi Data)</span></a></p></li>
+<li><p><a class="reference internal" href="#6-node-5--table-partitioner-pembagian-data"><span class="xref myst">Node 5 — Table Partitioner (Pembagian Data)</span></a></p></li>
+<li><p><a class="reference internal" href="#7-node-6--k-nearest-neighbor-klasifikasi-knn"><span class="xref myst">Node 6 — K Nearest Neighbor (Klasifikasi KNN)</span></a></p></li>
+<li><p><a class="reference internal" href="#8-node-7--scorer-evaluasi-model"><span class="xref myst">Node 7 — Scorer (Evaluasi Model)</span></a></p></li>
+<li><p><a class="reference internal" href="#9-alur-workflow-lengkap"><span class="xref myst">Alur Workflow Lengkap</span></a></p></li>
+<li><p><a class="reference internal" href="#10-kesimpulan"><span class="xref myst">Kesimpulan</span></a></p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="pendahuluan">
+<h2>1. Pendahuluan<a class="headerlink" href="#pendahuluan" title="Link to this heading">#</a></h2>
+<p>Analisis kesuburan tanah merupakan salah satu aplikasi penting dalam bidang pertanian berbasis data. Pada penelitian ini, dilakukan proses <strong>klasifikasi kesuburan tanah</strong> menggunakan algoritma <strong>K-Nearest Neighbor (KNN)</strong> yang diimplementasikan melalui platform KNIME Analytics. Dataset yang digunakan adalah <code class="docutils literal notranslate"><span class="pre">dataset_kesuburan_tanah_missing.xlsx</span></code> yang terdiri dari <strong>2.000 baris data</strong> dan <strong>12 kolom fitur</strong>, mencakup berbagai parameter tanah seperti pH, kandungan nitrogen, fosfor, kalium, karbon organik, serta tekstur tanah.</p>
+<p>Tujuan utama dari analisis ini adalah membangun model klasifikasi yang mampu memprediksi apakah suatu sampel tanah dikategorikan sebagai <strong>“Subur”</strong> atau <strong>“Tidak Subur”</strong> berdasarkan karakteristik kimiawi dan fisiknya.</p>
+<section id="deskripsi-dataset">
+<h3>Deskripsi Dataset<a class="headerlink" href="#deskripsi-dataset" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kolom</p></th>
+<th class="head"><p>Tipe Data</p></th>
+<th class="head"><p>Deskripsi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ID</p></td>
+<td><p>Integer</p></td>
+<td><p>Identifikasi unik setiap sampel tanah</p></td>
+</tr>
+<tr class="row-odd"><td><p>pH Tanah</p></td>
+<td><p>Float</p></td>
+<td><p>Tingkat keasaman tanah (skala 3.5 – 9.0)</p></td>
+</tr>
+<tr class="row-even"><td><p>N Total (%)</p></td>
+<td><p>Float</p></td>
+<td><p>Persentase kandungan Nitrogen total</p></td>
+</tr>
+<tr class="row-odd"><td><p>P Tersedia (ppm)</p></td>
+<td><p>Float</p></td>
+<td><p>Kandungan Fosfor tersedia dalam ppm</p></td>
+</tr>
+<tr class="row-even"><td><p>K Tersedia (meq/100g)</p></td>
+<td><p>Float</p></td>
+<td><p>Kandungan Kalium tersedia</p></td>
+</tr>
+<tr class="row-odd"><td><p>C Organik (%)</p></td>
+<td><p>Float</p></td>
+<td><p>Persentase kandungan Karbon Organik</p></td>
+</tr>
+<tr class="row-even"><td><p>KTK (meq/100g)</p></td>
+<td><p>Float</p></td>
+<td><p>Kapasitas Tukar Kation</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kejenuhan Basa (%)</p></td>
+<td><p>Float</p></td>
+<td><p>Persentase Kejenuhan Basa</p></td>
+</tr>
+<tr class="row-even"><td><p>Tekstur Tanah</p></td>
+<td><p>String</p></td>
+<td><p>Jenis tekstur tanah (Debu, Liat, Pasir, dll.)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kadar Air (%)</p></td>
+<td><p>Float</p></td>
+<td><p>Persentase kadar air tanah</p></td>
+</tr>
+<tr class="row-even"><td><p>Bulk Density (g/cm³)</p></td>
+<td><p>Float</p></td>
+<td><p>Kerapatan tanah</p></td>
+</tr>
+<tr class="row-odd"><td><p>Label</p></td>
+<td><p>String</p></td>
+<td><p>Kelas target: “Subur” / “Tidak Subur”</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="distribusi-label">
+<h3>Distribusi Label<a class="headerlink" href="#distribusi-label" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Subur</strong>: 1.000 sampel (50%)</p></li>
+<li><p><strong>Tidak Subur</strong>: 1.000 sampel (50%)</p></li>
+</ul>
+<p>Data terdistribusi <strong>seimbang (balanced)</strong>, sehingga tidak diperlukan teknik penyeimbangan kelas tambahan seperti oversampling atau undersampling.</p>
+</section>
+<section id="ringkasan-missing-value-pada-dataset">
+<h3>Ringkasan Missing Value pada Dataset<a class="headerlink" href="#ringkasan-missing-value-pada-dataset" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kolom</p></th>
+<th class="head"><p>Jumlah Missing</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>N Total (%)</p></td>
+<td><p>160</p></td>
+</tr>
+<tr class="row-odd"><td><p>P Tersedia (ppm)</p></td>
+<td><p>240</p></td>
+</tr>
+<tr class="row-even"><td><p>K Tersedia (meq/100g)</p></td>
+<td><p>140</p></td>
+</tr>
+<tr class="row-odd"><td><p>C Organik (%)</p></td>
+<td><p>200</p></td>
+</tr>
+<tr class="row-even"><td><p>Tekstur Tanah</p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kadar Air (%)</p></td>
+<td><p>180</p></td>
+</tr>
+<tr class="row-even"><td><p>Bulk Density (g/cm³)</p></td>
+<td><p>120</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="node-1-excel-reader-import-data">
+<h2>2. Node 1 — Excel Reader (Import Data)<a class="headerlink" href="#node-1-excel-reader-import-data" title="Link to this heading">#</a></h2>
+<section id="screenshot-knime">
+<h3>Screenshot KNIME<a class="headerlink" href="#screenshot-knime" title="Link to this heading">#</a></h3>
+<p><img alt="Node 1 - Excel Reader" src="images/node1_excel_reader.png" /></p>
+</section>
+<section id="deskripsi-node">
+<h3>Deskripsi Node<a class="headerlink" href="#deskripsi-node" title="Link to this heading">#</a></h3>
+<p>Node pertama dalam workflow ini adalah <strong>Excel Reader</strong>, yang berfungsi sebagai pintu masuk data mentah ke dalam lingkungan KNIME. Node ini membaca file <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code> langsung dari sistem file lokal dan mengonversinya ke dalam format tabel internal KNIME yang dapat diproses oleh node-node berikutnya.</p>
+</section>
+<section id="konfigurasi-yang-digunakan">
+<h3>Konfigurasi yang Digunakan<a class="headerlink" href="#konfigurasi-yang-digunakan" title="Link to this heading">#</a></h3>
+<p>Berdasarkan screenshot di atas, konfigurasi Excel Reader yang diterapkan adalah sebagai berikut:</p>
+<ul class="simple">
+<li><p><strong>Read from</strong>: Local File System — data dibaca dari sistem file lokal pengguna.</p></li>
+<li><p><strong>Mode</strong>: File — membaca satu file tunggal (bukan folder).</p></li>
+<li><p><strong>File Path</strong>: <code class="docutils literal notranslate"><span class="pre">C:\Users\kiyan\Downloads\dataset_kesuburan_tanah_missing.xlsx</span></code></p></li>
+<li><p><strong>Select Sheet</strong>: First with data — KNIME secara otomatis memilih sheet pertama yang mengandung data.</p></li>
+</ul>
+</section>
+<section id="hasil-output">
+<h3>Hasil Output<a class="headerlink" href="#hasil-output" title="Link to this heading">#</a></h3>
+<p>Setelah node dieksekusi, KNIME berhasil memuat dataset dengan rincian sebagai berikut:</p>
+<ul class="simple">
+<li><p><strong>Jumlah Baris</strong>: 2.000 baris data</p></li>
+<li><p><strong>Jumlah Kolom</strong>: 12 kolom</p></li>
+<li><p>Kolom bertipe <strong>numerik (Double/Integer)</strong> mencakup: <code class="docutils literal notranslate"><span class="pre">pH</span> <span class="pre">Tanah</span></code>, <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">Total</span> <span class="pre">(%)</span></code>, <code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">Tersedia</span> <span class="pre">(ppm)</span></code>, <code class="docutils literal notranslate"><span class="pre">K</span> <span class="pre">Tersedia</span> <span class="pre">(meq/100g)</span></code>, <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">Organik</span> <span class="pre">(%)</span></code>, <code class="docutils literal notranslate"><span class="pre">KTK</span> <span class="pre">(meq/100g)</span></code>, <code class="docutils literal notranslate"><span class="pre">Kejenuhan</span> <span class="pre">Basa</span> <span class="pre">(%)</span></code>, <code class="docutils literal notranslate"><span class="pre">Kadar</span> <span class="pre">Air</span> <span class="pre">(%)</span></code>, <code class="docutils literal notranslate"><span class="pre">Bulk</span> <span class="pre">Density</span> <span class="pre">(g/cm³)</span></code>.</p></li>
+<li><p>Kolom bertipe <strong>String</strong> mencakup: <code class="docutils literal notranslate"><span class="pre">Tekstur</span> <span class="pre">Tanah</span></code> dan <code class="docutils literal notranslate"><span class="pre">Label</span></code>.</p></li>
+</ul>
+</section>
+<section id="observasi-awal">
+<h3>Observasi Awal<a class="headerlink" href="#observasi-awal" title="Link to this heading">#</a></h3>
+<p>Dari preview data yang tampil di bagian bawah dialog pada screenshot, terlihat bahwa terdapat sejumlah sel yang ditandai dengan tanda tanya (<code class="docutils literal notranslate"><span class="pre">?</span></code>) — ini merupakan representasi KNIME untuk <strong>missing value</strong> (nilai hilang). Nilai hilang ditemukan tersebar di berbagai kolom numerik maupun kolom kategorikal (<code class="docutils literal notranslate"><span class="pre">Tekstur</span> <span class="pre">Tanah</span></code>). Hal ini mengonfirmasi bahwa dataset memerlukan tahap <strong>pra-pemrosesan</strong> sebelum dapat digunakan untuk pelatihan model.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="node-2-missing-value-penanganan-nilai-hilang">
+<h2>3. Node 2 — Missing Value (Penanganan Nilai Hilang)<a class="headerlink" href="#node-2-missing-value-penanganan-nilai-hilang" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Screenshot KNIME<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p><img alt="Node 2 - Missing Value" src="images/node2_missing_value.png" /></p>
+</section>
+<section id="id2">
+<h3>Deskripsi Node<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Node <strong>Missing Value</strong> digunakan untuk menangani nilai-nilai yang hilang (missing values) dalam dataset. Keberadaan missing value dapat menyebabkan error pada node-node berikutnya, terutama pada algoritma machine learning seperti KNN yang tidak dapat memproses data yang tidak lengkap. Oleh karena itu, imputasi nilai hilang merupakan langkah yang sangat krusial dalam pra-pemrosesan data.</p>
+</section>
+<section id="id3">
+<h3>Konfigurasi yang Digunakan<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>Berdasarkan screenshot di atas, konfigurasi yang diterapkan pada tab <strong>Default</strong> adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipe Data</p></th>
+<th class="head"><p>Metode Imputasi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Number (Integer)</p></td>
+<td><p><strong>Mean</strong> (Rata-rata)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Number (Float)</p></td>
+<td><p><strong>Do nothing</strong> (Tidak dilakukan apapun)</p></td>
+</tr>
+<tr class="row-even"><td><p>String</p></td>
+<td><p><strong>Most Frequent Value</strong> (Modus)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="penjelasan-detail-setiap-metode">
+<h3>Penjelasan Detail Setiap Metode<a class="headerlink" href="#penjelasan-detail-setiap-metode" title="Link to this heading">#</a></h3>
+<section id="a-number-integer-mean">
+<h4>a) Number (Integer) — Mean<a class="headerlink" href="#a-number-integer-mean" title="Link to this heading">#</a></h4>
+<p>Untuk kolom bertipe bilangan bulat (integer), missing value diisi menggunakan <strong>nilai rata-rata (mean)</strong> dari kolom tersebut.</p>
+<p><strong>Rumus Mean:</strong></p>
+<div class="math notranslate nohighlight">
+\[\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}\]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\bar{x}\)</span> = nilai rata-rata kolom</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span> = nilai data ke-i yang tidak hilang</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span> = jumlah data yang tidak hilang (valid)</p></li>
+</ul>
+</section>
+<section id="b-number-float-do-nothing">
+<h4>b) Number (Float) — Do Nothing<a class="headerlink" href="#b-number-float-do-nothing" title="Link to this heading">#</a></h4>
+<p>Untuk kolom bertipe desimal (float), dipilih opsi <strong>“Do nothing”</strong>, yang berarti missing value pada kolom numerik float <strong>dibiarkan apa adanya</strong> dan tidak diimputasi. Ini menjadi penting karena node KNN di KNIME dapat menangani missing value pada fitur numerik dengan cara tertentu, atau kolom tersebut akan diabaikan dalam kalkulasi jarak.</p>
+<blockquote>
+<div><p><strong>Catatan</strong>: Beberapa kolom float seperti <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">Total</span> <span class="pre">(%)</span></code>, <code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">Tersedia</span> <span class="pre">(ppm)</span></code>, <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">Organik</span> <span class="pre">(%)</span></code>, <code class="docutils literal notranslate"><span class="pre">Kadar</span> <span class="pre">Air</span> <span class="pre">(%)</span></code>, dan <code class="docutils literal notranslate"><span class="pre">Bulk</span> <span class="pre">Density</span> <span class="pre">(g/cm³)</span></code> yang memiliki missing value tetap memiliki tanda <code class="docutils literal notranslate"><span class="pre">(!)</span></code> merah di output tabel, menunjukkan bahwa nilai hilang tersebut masih ada setelah node ini dieksekusi.</p>
+</div></blockquote>
+</section>
+<section id="c-string-most-frequent-value-modus">
+<h4>c) String — Most Frequent Value (Modus)<a class="headerlink" href="#c-string-most-frequent-value-modus" title="Link to this heading">#</a></h4>
+<p>Untuk kolom kategorikal bertipe String, yaitu <code class="docutils literal notranslate"><span class="pre">Tekstur</span> <span class="pre">Tanah</span></code>, missing value diisi menggunakan <strong>nilai yang paling sering muncul (modus/most frequent value)</strong>.</p>
+<p><strong>Rumus Modus:</strong></p>
+<div class="math notranslate nohighlight">
+\[\text{Modus} = \arg\max_{v} \, \text{count}(v)\]</div>
+<p>Di mana <span class="math notranslate nohighlight">\(v\)</span> adalah setiap nilai unik yang muncul dalam kolom tersebut, dan dipilih nilai yang memiliki frekuensi kemunculan tertinggi.</p>
+</section>
+</section>
+<section id="id4">
+<h3>Hasil Output<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>Setelah node Missing Value dieksekusi, output menampilkan tabel dengan:</p>
+<ul class="simple">
+<li><p><strong>Jumlah Baris</strong>: 2.000 (tidak ada baris yang dihapus)</p></li>
+<li><p><strong>Jumlah Kolom</strong>: 12 (tidak ada perubahan)</p></li>
+<li><p>Kolom <code class="docutils literal notranslate"><span class="pre">Tekstur</span> <span class="pre">Tanah</span></code> yang sebelumnya memiliki nilai hilang kini telah terisi dengan nilai modus.</p></li>
+<li><p>Beberapa kolom float masih memiliki indikator missing value karena konfigurasi “Do nothing”.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="node-3-one-to-many-encoding-kategorikal">
+<h2>4. Node 3 — One to Many (Encoding Kategorikal)<a class="headerlink" href="#node-3-one-to-many-encoding-kategorikal" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h3>Screenshot KNIME<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p><img alt="Node 3 - One to Many" src="images/node3_one_to_many.png" /></p>
+</section>
+<section id="id6">
+<h3>Deskripsi Node<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>Node <strong>One to Many</strong> digunakan untuk melakukan <strong>One-Hot Encoding</strong> terhadap kolom kategorikal (String). Algoritma KNN bekerja dengan perhitungan jarak matematis antar data point, sehingga tidak dapat memproses data berbentuk teks secara langsung. Oleh karena itu, kolom <code class="docutils literal notranslate"><span class="pre">Tekstur</span> <span class="pre">Tanah</span></code> yang berisi kategori teks perlu dikonversi menjadi representasi numerik biner.</p>
+</section>
+<section id="id7">
+<h3>Konfigurasi yang Digunakan<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>Berdasarkan screenshot di atas, konfigurasi <strong>One to Many</strong> adalah:</p>
+<ul class="simple">
+<li><p><strong>Mode seleksi kolom</strong>: Manual</p></li>
+<li><p><strong>Kolom yang tersedia (Available columns)</strong>: Label</p></li>
+<li><p><strong>Kolom yang ditransformasi (Columns to transform)</strong>: <code class="docutils literal notranslate"><span class="pre">Tekstur</span> <span class="pre">Tanah</span></code></p></li>
+</ul>
+</section>
+<section id="mekanisme-one-hot-encoding">
+<h3>Mekanisme One-Hot Encoding<a class="headerlink" href="#mekanisme-one-hot-encoding" title="Link to this heading">#</a></h3>
+<p>One-Hot Encoding bekerja dengan cara membuat <strong>kolom biner baru</strong> untuk setiap kategori unik yang terdapat dalam kolom asli. Setiap kolom baru bernilai <code class="docutils literal notranslate"><span class="pre">1</span></code> jika baris tersebut termasuk kategori tersebut, dan <code class="docutils literal notranslate"><span class="pre">0</span></code> jika tidak.</p>
+<p><strong>Contoh Ilustrasi:</strong></p>
+<p>Misalkan <code class="docutils literal notranslate"><span class="pre">Tekstur</span> <span class="pre">Tanah</span></code> memiliki kategori: Debu, Liat, Pasir, Lempung, Lempung Berdebu, Lempung Berliat.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tekstur Tanah</p></th>
+<th class="head"><p>Tekstur=Debu</p></th>
+<th class="head"><p>Tekstur=Liat</p></th>
+<th class="head"><p>Tekstur=Pasir</p></th>
+<th class="head"><p>Tekstur=Lempung</p></th>
+<th class="head"><p>…</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Debu</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-odd"><td><p>Liat</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-even"><td><p>Pasir</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Rumus One-Hot Encoding:</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x_{i,k} = \begin{cases} 1 &amp; \text{jika sampel ke-}i\text{ memiliki kategori }k \\ 0 &amp; \text{jika sampel ke-}i\text{ tidak memiliki kategori }k \end{cases}\end{split}\]</div>
+</section>
+<section id="id8">
+<h3>Hasil Output<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>Setelah proses encoding:</p>
+<ul class="simple">
+<li><p><strong>Jumlah Baris</strong>: 2.000 (tetap)</p></li>
+<li><p><strong>Jumlah Kolom</strong>: <strong>18 kolom</strong> (bertambah dari 12 menjadi 18, karena kolom <code class="docutils literal notranslate"><span class="pre">Tekstur</span> <span class="pre">Tanah</span></code> dipecah menjadi beberapa kolom biner baru sesuai jumlah kategori uniknya)</p></li>
+</ul>
+<p>Penambahan 6 kolom baru ini merepresentasikan kategori-kategori tekstur tanah yang ada dalam dataset (Debu, Liat, Pasir, Lempung, Lempung Berdebu, Lempung Berliat).</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="node-4-normalizer-normalisasi-data">
+<h2>5. Node 4 — Normalizer (Normalisasi Data)<a class="headerlink" href="#node-4-normalizer-normalisasi-data" title="Link to this heading">#</a></h2>
+<section id="id9">
+<h3>Screenshot KNIME<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p><img alt="Node 4 - Normalizer" src="images/node4_normalizer.png" /></p>
+</section>
+<section id="id10">
+<h3>Deskripsi Node<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<p>Node <strong>Normalizer</strong> digunakan untuk melakukan <strong>normalisasi</strong> pada kolom-kolom numerik. Normalisasi sangat penting dalam algoritma KNN karena KNN menggunakan perhitungan <strong>jarak Euclidean</strong> antar data point. Jika skala antar fitur sangat berbeda (misalnya <code class="docutils literal notranslate"><span class="pre">KTK</span></code> berkisar 0–100, sementara <code class="docutils literal notranslate"><span class="pre">N</span> <span class="pre">Total</span> <span class="pre">(%)</span></code> berkisar 0–1), maka fitur dengan skala lebih besar akan mendominasi perhitungan jarak dan menyebabkan hasil klasifikasi yang bias.</p>
+</section>
+<section id="id11">
+<h3>Konfigurasi yang Digunakan<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>Berdasarkan screenshot di atas, konfigurasi Normalizer adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Normalization method</p></td>
+<td><p><strong>Min-max</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Minimum</p></td>
+<td><p><strong>0</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Maximum</p></td>
+<td><p><strong>1</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="rumus-normalisasi-min-max">
+<h3>Rumus Normalisasi Min-Max<a class="headerlink" href="#rumus-normalisasi-min-max" title="Link to this heading">#</a></h3>
+<p>Metode <strong>Min-Max Normalization</strong> mentransformasi setiap nilai fitur ke dalam rentang [0, 1] menggunakan rumus berikut:</p>
+<div class="math notranslate nohighlight">
+\[x' = \frac{x - x_{\min}}{x_{\max} - x_{\min}}\]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x'\)</span> = nilai hasil normalisasi</p></li>
+<li><p><span class="math notranslate nohighlight">\(x\)</span> = nilai asli dari suatu data point</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_{\min}\)</span> = nilai minimum dari seluruh data pada kolom tersebut</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_{\max}\)</span> = nilai maksimum dari seluruh data pada kolom tersebut</p></li>
+</ul>
+<p><strong>Contoh Perhitungan Nyata:</strong></p>
+<p>Untuk kolom <code class="docutils literal notranslate"><span class="pre">pH</span> <span class="pre">Tanah</span></code> dengan rentang nilai 3.5 hingga 9.0:</p>
+<ul class="simple">
+<li><p>Nilai asli pada Row0: <span class="math notranslate nohighlight">\(x = 8.93\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x_{\min} = 3.50\)</span>, <span class="math notranslate nohighlight">\(x_{\max} = 9.00\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[x' = \frac{8.93 - 3.50}{9.00 - 3.50} = \frac{5.43}{5.50} \approx 0.987\]</div>
+<p>Hasil ini sesuai dengan nilai yang terlihat di tabel output pada screenshot, yaitu <strong>0.987</strong> pada Row0 untuk kolom <code class="docutils literal notranslate"><span class="pre">pH</span> <span class="pre">Tanah</span></code>.</p>
+</section>
+<section id="id12">
+<h3>Hasil Output<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>Setelah normalisasi:</p>
+<ul class="simple">
+<li><p><strong>Jumlah Baris</strong>: 2.000 (tetap)</p></li>
+<li><p><strong>Jumlah Kolom</strong>: 18 (tetap)</p></li>
+<li><p>Seluruh nilai kolom numerik kini berada dalam rentang <strong>[0, 1]</strong></p></li>
+<li><p>Contoh hasil: pH Tanah Row0 = <strong>0.987</strong>, N Total Row0 = <strong>0.353</strong>, P Tersedia Row0 = <strong>0.074</strong></p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="node-5-table-partitioner-pembagian-data">
+<h2>6. Node 5 — Table Partitioner (Pembagian Data)<a class="headerlink" href="#node-5-table-partitioner-pembagian-data" title="Link to this heading">#</a></h2>
+<section id="id13">
+<h3>Screenshot KNIME<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<p><img alt="Node 5 - Table Partitioner" src="images/node5_table_partitioner.png" /></p>
+</section>
+<section id="id14">
+<h3>Deskripsi Node<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<p>Node <strong>Table Partitioner</strong> digunakan untuk membagi dataset menjadi dua bagian: <strong>data training</strong> (untuk melatih model) dan <strong>data testing</strong> (untuk menguji model). Pembagian ini esensial agar evaluasi model dilakukan secara objektif pada data yang belum pernah dilihat oleh model sebelumnya — sehingga hasil evaluasi mencerminkan kemampuan generalisasi model yang sesungguhnya.</p>
+</section>
+<section id="id15">
+<h3>Konfigurasi yang Digunakan<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<p>Berdasarkan screenshot di atas, konfigurasi Table Partitioner adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>First partition type</p></td>
+<td><p><strong>Relative (%)</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Relative size</p></td>
+<td><p><strong>80</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Sampling strategy</p></td>
+<td><p><strong>Stratified</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Group column</p></td>
+<td><p><strong>Label</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Fixed random seed</p></td>
+<td><p><strong>1678807467440</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="penjelasan-detail-konfigurasi">
+<h3>Penjelasan Detail Konfigurasi<a class="headerlink" href="#penjelasan-detail-konfigurasi" title="Link to this heading">#</a></h3>
+<section id="a-relative-size-80">
+<h4>a) Relative Size — 80%<a class="headerlink" href="#a-relative-size-80" title="Link to this heading">#</a></h4>
+<p>Dataset dibagi dengan rasio <strong>80:20</strong>, di mana:</p>
+<ul class="simple">
+<li><p><strong>Partisi 1 (Training set)</strong>: 80% dari 2.000 data = <strong>1.600 baris</strong></p></li>
+<li><p><strong>Partisi 2 (Testing set)</strong>: 20% dari 2.000 data = <strong>400 baris</strong></p></li>
+</ul>
+<p><strong>Rumus:</strong></p>
+<div class="math notranslate nohighlight">
+\[n_{\text{train}} = \left\lfloor N \times \frac{r}{100} \right\rfloor = \left\lfloor 2000 \times 0.80 \right\rfloor = 1600\]</div>
+<div class="math notranslate nohighlight">
+\[n_{\text{test}} = N - n_{\text{train}} = 2000 - 1600 = 400\]</div>
+<p>Di mana <span class="math notranslate nohighlight">\(N\)</span> adalah total jumlah data dan <span class="math notranslate nohighlight">\(r\)</span> adalah persentase partisi pertama.</p>
+</section>
+<section id="b-stratified-sampling">
+<h4>b) Stratified Sampling<a class="headerlink" href="#b-stratified-sampling" title="Link to this heading">#</a></h4>
+<p>Metode <strong>Stratified</strong> dipilih agar proporsi kelas pada data training dan testing <strong>tetap seimbang</strong> sesuai dengan distribusi pada dataset asli. Karena dataset memiliki distribusi label yang seimbang (50% Subur dan 50% Tidak Subur), maka:</p>
+<ul class="simple">
+<li><p>Training set: ≈ 800 Subur + 800 Tidak Subur</p></li>
+<li><p>Testing set: ≈ 200 Subur + 200 Tidak Subur</p></li>
+</ul>
+<p>Ini mencegah bias akibat distribusi kelas yang tidak merata pada salah satu partisi.</p>
+</section>
+<section id="c-fixed-random-seed">
+<h4>c) Fixed Random Seed<a class="headerlink" href="#c-fixed-random-seed" title="Link to this heading">#</a></h4>
+<p>Nilai seed <strong>1678807467440</strong> digunakan untuk memastikan <strong>reproducibility</strong> — artinya setiap kali workflow dijalankan ulang, pembagian data akan menghasilkan partisi yang sama persis. Hal ini penting untuk konsistensi eksperimen ilmiah.</p>
+</section>
+</section>
+<section id="id16">
+<h3>Hasil Output<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Partisi 1 (Training set)</strong>: <strong>1.600 baris</strong>, 18 kolom</p></li>
+<li><p><strong>Partisi 2 (Testing set)</strong>: <strong>400 baris</strong>, 18 kolom</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="node-6-k-nearest-neighbor-klasifikasi-knn">
+<h2>7. Node 6 — K Nearest Neighbor (Klasifikasi KNN)<a class="headerlink" href="#node-6-k-nearest-neighbor-klasifikasi-knn" title="Link to this heading">#</a></h2>
+<section id="id17">
+<h3>Screenshot KNIME<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<p><img alt="Node 6 - K Nearest Neighbor" src="images/node6_knn.png" /></p>
+</section>
+<section id="id18">
+<h3>Deskripsi Node<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<p>Node <strong>K Nearest Neighbor (KNN)</strong> adalah inti dari workflow ini — merupakan algoritma klasifikasi yang digunakan untuk memprediksi label kesuburan tanah. KNN adalah algoritma <strong>non-parametrik</strong> berbasis instance yang mengklasifikasikan data baru berdasarkan kedekatan (kemiripan) dengan data-data yang sudah ada dalam training set.</p>
+</section>
+<section id="id19">
+<h3>Konfigurasi yang Digunakan<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<p>Berdasarkan screenshot dialog K Nearest Neighbor di atas:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Column with class labels</p></td>
+<td><p><strong>Label</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Number of neighbours to consider (k)</p></td>
+<td><p><strong>5</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Weight neighbours by distance</p></td>
+<td><p><strong>Tidak dicentang (False)</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Output class probabilities</p></td>
+<td><p><strong>Tidak dicentang (False)</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="mekanisme-kerja-algoritma-knn">
+<h3>Mekanisme Kerja Algoritma KNN<a class="headerlink" href="#mekanisme-kerja-algoritma-knn" title="Link to this heading">#</a></h3>
+<section id="langkah-1-hitung-jarak-euclidean">
+<h4>Langkah 1 — Hitung Jarak Euclidean<a class="headerlink" href="#langkah-1-hitung-jarak-euclidean" title="Link to this heading">#</a></h4>
+<p>Untuk setiap data testing, KNN menghitung jarak ke <strong>seluruh data training</strong> menggunakan <strong>Euclidean Distance</strong>:</p>
+<div class="math notranslate nohighlight">
+\[d(x, x_i) = \sqrt{\sum_{j=1}^{p} (x_j - x_{i,j})^2}\]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x\)</span> = data testing yang ingin diklasifikasi</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_i\)</span> = data training ke-<span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(p\)</span> = jumlah fitur (18 kolom setelah encoding dan normalisasi)</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_j\)</span> = nilai fitur ke-<span class="math notranslate nohighlight">\(j\)</span> dari data testing</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_{i,j}\)</span> = nilai fitur ke-<span class="math notranslate nohighlight">\(j\)</span> dari data training ke-<span class="math notranslate nohighlight">\(i\)</span></p></li>
+</ul>
+</section>
+<section id="langkah-2-temukan-k-tetangga-terdekat">
+<h4>Langkah 2 — Temukan K Tetangga Terdekat<a class="headerlink" href="#langkah-2-temukan-k-tetangga-terdekat" title="Link to this heading">#</a></h4>
+<p>Setelah semua jarak dihitung, algoritma mengurutkan data training dari yang <strong>terdekat (jarak terkecil) ke terjauh</strong>, kemudian memilih <strong>k = 5</strong> data training dengan jarak terkecil sebagai “tetangga terdekat”.</p>
+</section>
+<section id="langkah-3-voting-mayoritas">
+<h4>Langkah 3 — Voting Mayoritas<a class="headerlink" href="#langkah-3-voting-mayoritas" title="Link to this heading">#</a></h4>
+<p>KNN menentukan kelas prediksi berdasarkan <strong>voting mayoritas</strong> dari k tetangga terdekat:</p>
+<div class="math notranslate nohighlight">
+\[\hat{y} = \arg\max_{c \in C} \sum_{i=1}^{k} \mathbf{1}[y_i = c]\]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\hat{y}\)</span> = kelas prediksi</p></li>
+<li><p><span class="math notranslate nohighlight">\(C\)</span> = himpunan kelas yang mungkin {“Subur”, “Tidak Subur”}</p></li>
+<li><p><span class="math notranslate nohighlight">\(y_i\)</span> = label dari tetangga ke-<span class="math notranslate nohighlight">\(i\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{1}[y_i = c]\)</span> = fungsi indikator (bernilai 1 jika tetangga ke-<span class="math notranslate nohighlight">\(i\)</span> memiliki kelas <span class="math notranslate nohighlight">\(c\)</span>)</p></li>
+</ul>
+<p><strong>Contoh:</strong> Jika dari 5 tetangga terdekat, 4 berlabel “Subur” dan 1 berlabel “Tidak Subur”, maka data testing tersebut diprediksi sebagai <strong>“Subur”</strong>.</p>
+</section>
+<section id="mengapa-k-5">
+<h4>Mengapa k = 5?<a class="headerlink" href="#mengapa-k-5" title="Link to this heading">#</a></h4>
+<p>Nilai <strong>k = 5</strong> adalah pilihan umum yang memberikan keseimbangan antara:</p>
+<ul class="simple">
+<li><p><strong>Bias</strong>: k terlalu kecil (misal k=1) membuat model sangat sensitif terhadap noise.</p></li>
+<li><p><strong>Variance</strong>: k terlalu besar membuat model terlalu umum dan kehilangan kemampuan membedakan kelas.</p></li>
+</ul>
+<p>Pemilihan k ganjil (5) juga mencegah <strong>tie-breaking</strong> (hasil seri) pada klasifikasi biner.</p>
+</section>
+</section>
+<section id="koneksi-node">
+<h3>Koneksi Node<a class="headerlink" href="#koneksi-node" title="Link to this heading">#</a></h3>
+<p>Node KNN dalam KNIME menerima <strong>dua input</strong>:</p>
+<ul class="simple">
+<li><p><strong>Input 1 (training port)</strong>: Data training dari <strong>Partisi 1</strong> Table Partitioner (1.600 baris)</p></li>
+<li><p><strong>Input 2 (test port)</strong>: Data testing dari <strong>Partisi 2</strong> Table Partitioner (400 baris)</p></li>
+</ul>
+</section>
+<section id="id20">
+<h3>Hasil Output<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Output (Classified Data)</strong>: <strong>400 baris</strong>, 19 kolom — bertambah 1 kolom baru yaitu <code class="docutils literal notranslate"><span class="pre">Class</span> <span class="pre">[kNN]</span></code> yang berisi prediksi kelas untuk setiap data testing.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="node-7-scorer-evaluasi-model">
+<h2>8. Node 7 — Scorer (Evaluasi Model)<a class="headerlink" href="#node-7-scorer-evaluasi-model" title="Link to this heading">#</a></h2>
+<section id="id21">
+<h3>Screenshot KNIME<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
+<p><img alt="Node 7 - Scorer" src="images/node7_scorer.png" /></p>
+</section>
+<section id="id22">
+<h3>Deskripsi Node<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<p>Node <strong>Scorer</strong> digunakan untuk mengevaluasi performa model klasifikasi dengan cara membandingkan <strong>label prediksi</strong> dari model KNN dengan <strong>label aktual</strong> dari data testing. Output utama dari node ini adalah <strong>Confusion Matrix</strong> dan berbagai <strong>metrik akurasi</strong>.</p>
+</section>
+<section id="id23">
+<h3>Konfigurasi yang Digunakan<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<p>Berdasarkan screenshot di atas, konfigurasi Scorer adalah:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>First column (Prediksi)</p></td>
+<td><p><strong>Class [kNN]</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Second column (Aktual)</p></td>
+<td><p><strong>Label</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Sorting strategy</p></td>
+<td><p><strong>Insertion order</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Reverse order</p></td>
+<td><p>Tidak dicentang</p></td>
+</tr>
+<tr class="row-even"><td><p>Use name prefix</p></td>
+<td><p>Tidak dicentang</p></td>
+</tr>
+<tr class="row-odd"><td><p>Missing values</p></td>
+<td><p><strong>Ignore</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="hasil-confusion-matrix">
+<h3>Hasil Confusion Matrix<a class="headerlink" href="#hasil-confusion-matrix" title="Link to this heading">#</a></h3>
+<p>Berdasarkan tabel confusion matrix yang terlihat pada screenshot di atas:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p><strong>Prediksi: Tidak Subur</strong></p></th>
+<th class="head"><p><strong>Prediksi: Subur</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Aktual: Tidak Subur</strong></p></td>
+<td><p><strong>114</strong> (True Negative)</p></td>
+<td><p><strong>0</strong> (False Positive)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Aktual: Subur</strong></p></td>
+<td><p><strong>0</strong> (False Negative)</p></td>
+<td><p><strong>110</strong> (True Positive)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="perhitungan-metrik-evaluasi">
+<h3>Perhitungan Metrik Evaluasi<a class="headerlink" href="#perhitungan-metrik-evaluasi" title="Link to this heading">#</a></h3>
+<section id="a-accuracy-akurasi">
+<h4>a) Accuracy (Akurasi)<a class="headerlink" href="#a-accuracy-akurasi" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\text{Accuracy} = \frac{TP + TN}{TP + TN + FP + FN} = \frac{110 + 114}{110 + 114 + 0 + 0} = \frac{224}{224} = 1.0 = \mathbf{100\%}\]</div>
+</section>
+<section id="b-precision-presisi-untuk-kelas-subur">
+<h4>b) Precision (Presisi) — untuk kelas “Subur”<a class="headerlink" href="#b-precision-presisi-untuk-kelas-subur" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\text{Precision} = \frac{TP}{TP + FP} = \frac{110}{110 + 0} = 1.0 = \mathbf{100\%}\]</div>
+</section>
+<section id="c-recall-sensitivitas-untuk-kelas-subur">
+<h4>c) Recall (Sensitivitas) — untuk kelas “Subur”<a class="headerlink" href="#c-recall-sensitivitas-untuk-kelas-subur" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\text{Recall} = \frac{TP}{TP + FN} = \frac{110}{110 + 0} = 1.0 = \mathbf{100\%}\]</div>
+</section>
+<section id="d-f1-score">
+<h4>d) F1-Score<a class="headerlink" href="#d-f1-score" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\text{F1-Score} = 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}} = 2 \times \frac{1.0 \times 1.0}{1.0 + 1.0} = \mathbf{1.0}\]</div>
+</section>
+<section id="e-spesifisitas-untuk-kelas-tidak-subur">
+<h4>e) Spesifisitas — untuk kelas “Tidak Subur”<a class="headerlink" href="#e-spesifisitas-untuk-kelas-tidak-subur" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[\text{Specificity} = \frac{TN}{TN + FP} = \frac{114}{114 + 0} = 1.0 = \mathbf{100\%}\]</div>
+</section>
+</section>
+<section id="interpretasi-hasil">
+<h3>Interpretasi Hasil<a class="headerlink" href="#interpretasi-hasil" title="Link to this heading">#</a></h3>
+<p>Keterangan nilai pada confusion matrix:</p>
+<ul class="simple">
+<li><p><strong>TP (True Positive)</strong> = 110: Model memprediksi “Subur” dan aktualnya memang “Subur”.</p></li>
+<li><p><strong>TN (True Negative)</strong> = 114: Model memprediksi “Tidak Subur” dan aktualnya memang “Tidak Subur”.</p></li>
+<li><p><strong>FP (False Positive)</strong> = 0: Tidak ada data “Tidak Subur” yang diprediksi “Subur”.</p></li>
+<li><p><strong>FN (False Negative)</strong> = 0: Tidak ada data “Subur” yang diprediksi “Tidak Subur”.</p></li>
+</ul>
+<blockquote>
+<div><p><strong>Total data testing yang dievaluasi = 114 + 110 = 224 sampel</strong> (bukan 400, karena sisanya memiliki missing value yang diabaikan sesuai konfigurasi “Ignore” pada Scorer).</p>
+</div></blockquote>
+<p>Model KNN dengan <strong>k = 5</strong> berhasil mencapai <strong>akurasi sempurna 100%</strong> pada data testing. Hal ini menunjukkan bahwa model sangat baik dalam mengklasifikasikan kesuburan tanah berdasarkan fitur-fitur yang tersedia.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="alur-workflow-lengkap">
+<h2>9. Alur Workflow Lengkap<a class="headerlink" href="#alur-workflow-lengkap" title="Link to this heading">#</a></h2>
+<p>Berikut adalah keseluruhan alur <strong>workflow KNIME</strong> yang dibangun untuk analisis kesuburan tanah:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>┌──────────────┐     ┌───────────────┐     ┌─────────────┐     ┌────────────┐
+│ Excel Reader │ ──► │ Missing Value │ ──► │ One to Many │ ──► │ Normalizer │
+│  (Input data)│     │ (Imputasi     │     │ (One-Hot    │     │ (Min-Max   │
+│  2000 baris  │     │  missing val) │     │  Encoding)  │     │  [0,1])    │
+│  12 kolom    │     │  12 kolom     │     │  18 kolom   │     │  18 kolom  │
+└──────────────┘     └───────────────┘     └─────────────┘     └─────┬──────┘
+                                                                      │
+                                                                      ▼
+                                                          ┌───────────────────┐
+                                                          │  Table Partitioner│
+                                                          │  80% Train (1600) │
+                                                          │  20% Test  (400)  │
+                                                          └────────┬──────────┘
+                                                                   │
+                                              ┌────────────────────┴────────────┐
+                                              │ Train (1600)         Test (400) │
+                                              ▼                                 │
+                                   ┌──────────────────┐                        │
+                                   │  K Nearest       │ ◄──────────────────────┘
+                                   │  Neighbor (k=5)  │
+                                   │  Output: 400 brs │
+                                   │  + kolom prediksi│
+                                   └────────┬─────────┘
+                                            │
+                                            ▼
+                                   ┌──────────────────┐
+                                   │     Scorer       │
+                                   │  Confusion Matrix│
+                                   │  Accuracy: 100%  │
+                                   └──────────────────┘
+</pre></div>
+</div>
+<section id="ringkasan-transformasi-data-per-node">
+<h3>Ringkasan Transformasi Data per Node<a class="headerlink" href="#ringkasan-transformasi-data-per-node" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Node</p></th>
+<th class="head"><p>Input Baris</p></th>
+<th class="head"><p>Input Kolom</p></th>
+<th class="head"><p>Output Baris</p></th>
+<th class="head"><p>Output Kolom</p></th>
+<th class="head"><p>Fungsi Utama</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Excel Reader</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>2.000</p></td>
+<td><p>12</p></td>
+<td><p>Import data mentah dari file xlsx</p></td>
+</tr>
+<tr class="row-odd"><td><p>Missing Value</p></td>
+<td><p>2.000</p></td>
+<td><p>12</p></td>
+<td><p>2.000</p></td>
+<td><p>12</p></td>
+<td><p>Imputasi nilai hilang</p></td>
+</tr>
+<tr class="row-even"><td><p>One to Many</p></td>
+<td><p>2.000</p></td>
+<td><p>12</p></td>
+<td><p>2.000</p></td>
+<td><p>18</p></td>
+<td><p>Encoding kolom kategorikal</p></td>
+</tr>
+<tr class="row-odd"><td><p>Normalizer</p></td>
+<td><p>2.000</p></td>
+<td><p>18</p></td>
+<td><p>2.000</p></td>
+<td><p>18</p></td>
+<td><p>Normalisasi min-max ke [0,1]</p></td>
+</tr>
+<tr class="row-even"><td><p>Table Partitioner</p></td>
+<td><p>2.000</p></td>
+<td><p>18</p></td>
+<td><p>1.600 / 400</p></td>
+<td><p>18</p></td>
+<td><p>Pembagian data 80:20</p></td>
+</tr>
+<tr class="row-odd"><td><p>K Nearest Neighbor</p></td>
+<td><p>1.600 (train) + 400 (test)</p></td>
+<td><p>18</p></td>
+<td><p>400</p></td>
+<td><p>19</p></td>
+<td><p>Klasifikasi KNN k=5</p></td>
+</tr>
+<tr class="row-even"><td><p>Scorer</p></td>
+<td><p>400</p></td>
+<td><p>19</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>Evaluasi confusion matrix</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan">
+<h2>10. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Berdasarkan seluruh tahapan analisis yang telah dilakukan menggunakan KNIME Analytics Platform, dapat disimpulkan beberapa hal penting sebagai berikut:</p>
+<p><strong>1. Kualitas Data</strong>
+Dataset <code class="docutils literal notranslate"><span class="pre">dataset_kesuburan_tanah_missing.xlsx</span></code> memiliki 2.000 sampel dengan distribusi label yang seimbang (1.000 Subur dan 1.000 Tidak Subur). Terdapat missing value pada 7 kolom dengan total sekitar 1.140 nilai hilang (sekitar 5,7% dari total sel data).</p>
+<p><strong>2. Pra-pemrosesan Data</strong>
+Penanganan missing value dilakukan dengan strategi berbeda berdasarkan tipe data: imputasi mean untuk integer, do nothing untuk float, dan modus untuk string. Kolom kategorikal <code class="docutils literal notranslate"><span class="pre">Tekstur</span> <span class="pre">Tanah</span></code> berhasil dikonversi menjadi representasi numerik melalui one-hot encoding, sehingga jumlah kolom bertambah dari 12 menjadi 18. Seluruh fitur numerik telah dinormalisasi menggunakan metode min-max agar berada dalam skala yang seragam [0, 1].</p>
+<p><strong>3. Pembagian Data</strong>
+Dataset dibagi secara stratified dengan rasio 80:20, menghasilkan 1.600 data training dan 400 data testing dengan preservasi proporsi kelas.</p>
+<p><strong>4. Performa Model</strong>
+Algoritma K-Nearest Neighbor dengan parameter k=5 berhasil mengklasifikasikan kesuburan tanah dengan <strong>akurasi 100%</strong> pada data testing, dibuktikan dengan confusion matrix yang menunjukkan 114 prediksi benar untuk kelas “Tidak Subur” dan 110 prediksi benar untuk kelas “Subur”, tanpa adanya kesalahan klasifikasi sama sekali.</p>
+<p><strong>5. Rekomendasi</strong>
+Meskipun akurasi yang dicapai sangat tinggi, disarankan untuk:</p>
+<ul class="simple">
+<li><p>Melakukan validasi silang (cross-validation) guna memastikan generalisasi model.</p></li>
+<li><p>Mencoba nilai k yang berbeda untuk mengoptimalkan performa.</p></li>
+<li><p>Mengeksplorasi penggunaan metode imputasi yang lebih canggih untuk kolom float yang saat ini dibiarkan dengan missing value.</p></li>
+<li><p>Mempertimbangkan algoritma lain sebagai pembanding (misalnya Decision Tree atau Random Forest).</p></li>
+</ul>
+<hr class="docutils" />
+<p><em>Laporan ini dibuat berdasarkan analisis workflow KNIME untuk keperluan Ujian Tengah Semester Penambangan Data — Analisis Kesuburan Tanah.</em></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -372,6 +1276,119 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ujian-tengah-semester-penambangan-data">Ujian Tengah Semester — Penambangan Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-knime-analytics-platform">Menggunakan KNIME Analytics Platform</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daftar-isi">Daftar Isi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pendahuluan">1. Pendahuluan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-dataset">Deskripsi Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-label">Distribusi Label</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-missing-value-pada-dataset">Ringkasan Missing Value pada Dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-1-excel-reader-import-data">2. Node 1 — Excel Reader (Import Data)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#screenshot-knime">Screenshot KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-node">Deskripsi Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#konfigurasi-yang-digunakan">Konfigurasi yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-output">Hasil Output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observasi-awal">Observasi Awal</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-2-missing-value-penanganan-nilai-hilang">3. Node 2 — Missing Value (Penanganan Nilai Hilang)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Screenshot KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Deskripsi Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Konfigurasi yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-detail-setiap-metode">Penjelasan Detail Setiap Metode</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-number-integer-mean">a) Number (Integer) — Mean</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-number-float-do-nothing">b) Number (Float) — Do Nothing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-string-most-frequent-value-modus">c) String — Most Frequent Value (Modus)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Hasil Output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-3-one-to-many-encoding-kategorikal">4. Node 3 — One to Many (Encoding Kategorikal)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Screenshot KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Deskripsi Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Konfigurasi yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mekanisme-one-hot-encoding">Mekanisme One-Hot Encoding</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Hasil Output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-4-normalizer-normalisasi-data">5. Node 4 — Normalizer (Normalisasi Data)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Screenshot KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Deskripsi Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Konfigurasi yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus-normalisasi-min-max">Rumus Normalisasi Min-Max</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Hasil Output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-5-table-partitioner-pembagian-data">6. Node 5 — Table Partitioner (Pembagian Data)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Screenshot KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Deskripsi Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Konfigurasi yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-detail-konfigurasi">Penjelasan Detail Konfigurasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-relative-size-80">a) Relative Size — 80%</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-stratified-sampling">b) Stratified Sampling</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-fixed-random-seed">c) Fixed Random Seed</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Hasil Output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-6-k-nearest-neighbor-klasifikasi-knn">7. Node 6 — K Nearest Neighbor (Klasifikasi KNN)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Screenshot KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Deskripsi Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Konfigurasi yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mekanisme-kerja-algoritma-knn">Mekanisme Kerja Algoritma KNN</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-1-hitung-jarak-euclidean">Langkah 1 — Hitung Jarak Euclidean</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-2-temukan-k-tetangga-terdekat">Langkah 2 — Temukan K Tetangga Terdekat</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langkah-3-voting-mayoritas">Langkah 3 — Voting Mayoritas</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mengapa-k-5">Mengapa k = 5?</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#koneksi-node">Koneksi Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Hasil Output</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#node-7-scorer-evaluasi-model">8. Node 7 — Scorer (Evaluasi Model)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Screenshot KNIME</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Deskripsi Node</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">Konfigurasi yang Digunakan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-confusion-matrix">Hasil Confusion Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#perhitungan-metrik-evaluasi">Perhitungan Metrik Evaluasi</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-accuracy-akurasi">a) Accuracy (Akurasi)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-precision-presisi-untuk-kelas-subur">b) Precision (Presisi) — untuk kelas “Subur”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-recall-sensitivitas-untuk-kelas-subur">c) Recall (Sensitivitas) — untuk kelas “Subur”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-f1-score">d) F1-Score</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#e-spesifisitas-untuk-kelas-tidak-subur">e) Spesifisitas — untuk kelas “Tidak Subur”</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi-hasil">Interpretasi Hasil</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-workflow-lengkap">9. Alur Workflow Lengkap</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-transformasi-data-per-node">Ringkasan Transformasi Data per Node</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">10. Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

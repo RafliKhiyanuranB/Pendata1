@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=13ac56ea" />
@@ -172,6 +172,9 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Business Understanding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data-understanding.html">Data Understanding</a></li>
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="data-preparation.html">Data Preparation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modelling.html">Modelling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
@@ -298,7 +301,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -314,6 +319,16 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruang-lingkup">Ruang lingkup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kriteria-keberhasilan">Kriteria keberhasilan</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -325,7 +340,66 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="business-understanding">
 <h1>Business Understanding<a class="headerlink" href="#business-understanding" title="Link to this heading">#</a></h1>
-<p>Tahap ini mendefinisikan tujuan bisnis, ruang lingkup masalah, serta indikator keberhasilan analisis.</p>
+<p>Tahap <strong>Business Understanding</strong> adalah langkah pertama dalam proses data mining
+atau CRISP‑DM. Fokus utamanya adalah memahami <strong>tujuan bisnis</strong> dan <strong>masalah nyata</strong>
+yang ingin diselesaikan, sebelum menyentuh data maupun algoritma.</p>
+<p>Tujuan di sini bukan hanya “membuat model”, tetapi menjawab pertanyaan:</p>
+<blockquote>
+<div><p><em>“Masalah apa yang sedang terjadi, dan bagaimana analisis data bisa membantu?”</em></p>
+</div></blockquote>
+<section id="tujuan">
+<h2>Tujuan<a class="headerlink" href="#tujuan" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Menjelaskan latar belakang masalah (konteks organisasi/perusahaan/instansi).</p></li>
+<li><p>Mendefinisikan tujuan analisis dalam bahasa bisnis, misalnya:</p>
+<ul>
+<li><p>mengurangi tingkat dropout mahasiswa,</p></li>
+<li><p>meningkatkan ketepatan prediksi kelulusan,</p></li>
+<li><p>atau memahami pola nilai mahasiswa.</p></li>
+</ul>
+</li>
+<li><p>Menerjemahkan tujuan bisnis menjadi pertanyaan analitis yang bisa dijawab
+dengan data (misalnya: <em>“faktor apa saja yang paling berpengaruh terhadap X?”</em>).</p></li>
+</ul>
+</section>
+<section id="ruang-lingkup">
+<h2>Ruang lingkup<a class="headerlink" href="#ruang-lingkup" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Menentukan proses/bagian mana yang dianalisis<br />
+(contoh: hanya data satu angkatan, satu mata kuliah, atau satu periode tertentu).</p></li>
+<li><p>Menentukan batasan:</p>
+<ul>
+<li><p>periode data (misal: tahun ajaran 2023–2024),</p></li>
+<li><p>jenis variabel yang dipakai (nilai, kehadiran, latar belakang, dsb.),</p></li>
+<li><p>dan asumsi‑asumsi yang digunakan.</p></li>
+</ul>
+</li>
+<li><p>Mengidentifikasi stakeholder utama (dosen, kaprodi, manajemen kampus, dsb.)
+dan kebutuhan informasi mereka.</p></li>
+</ul>
+</section>
+<section id="kriteria-keberhasilan">
+<h2>Kriteria keberhasilan<a class="headerlink" href="#kriteria-keberhasilan" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Menentukan metrik keberhasilan yang terukur, misalnya:</p>
+<ul>
+<li><p>akurasi atau F1‑score minimal sekian persen,</p></li>
+<li><p>berkurangnya waktu analisis manual,</p></li>
+<li><p>atau adanya insight yang bisa langsung dipakai untuk pengambilan keputusan.</p></li>
+</ul>
+</li>
+<li><p>Menjelaskan bentuk output yang diharapkan:</p>
+<ul>
+<li><p>laporan tertulis,</p></li>
+<li><p>dashboard visual,</p></li>
+<li><p>model prediksi,</p></li>
+<li><p>atau rekomendasi kebijakan.</p></li>
+</ul>
+</li>
+<li><p>Menyepakati batasan: apa yang <strong>bisa</strong> dan <strong>tidak bisa</strong> dijawab oleh analisis,
+sehingga ekspektasi stakeholder tetap realistis.</p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -382,6 +456,25 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan">Tujuan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ruang-lingkup">Ruang lingkup</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kriteria-keberhasilan">Kriteria keberhasilan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
