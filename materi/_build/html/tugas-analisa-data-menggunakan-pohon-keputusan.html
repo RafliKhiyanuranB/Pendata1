@@ -1,0 +1,893 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Analisis Data Menggunakan Pohon Keputusan (Decision Tree) &#8212; Portofolio Data Mining</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=13ac56ea" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas-analisa-data-menggunakan-pohon-keputusan';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Analisis Data Menggunakan Naive Bayes" href="tugas-naive-bayes.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Portofolio Data Mining - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Portofolio Data Mining - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    240411100001_Rafli Khiyanuran Bazhari
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="business-understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-understanding.html">Data Understanding</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="data-preparation.html">Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelling.html">Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="laporan-analisis-kesuburan-tanah.html">Laporan Analisis Kesuburan Tanah</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas-naive-bayes.html">TUGAS NAIVE BAYES</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">TUGAS Analisa Data Menggunakan Pohon Keputusan</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tugas-analisa-data-menggunakan-pohon-keputusan.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Analisis Data Menggunakan Pohon Keputusan (Decision Tree)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-pohon-keputusan">1. Konsep Dasar Pohon Keputusan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-pohon-keputusan">Apa Itu Pohon Keputusan?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja-algoritma">Cara Kerja Algoritma</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ukuran-pembangunan-pohon-gain-ratio">2. Ukuran Pembangunan Pohon: Gain Ratio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy">2.1 Entropy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain">2.2 Information Gain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gain-ratio-yang-digunakan-dalam-eksperimen-ini">2.3 Gain Ratio (yang digunakan dalam eksperimen ini)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-iris">3. Dataset Iris</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">4. Workflow KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gambaran-umum-workflow">Gambaran Umum Workflow</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-setiap-node">5. Penjelasan Setiap Node</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-1-csv-reader">5.1 Node 1: CSV Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-2-table-partitioner">5.2 Node 2: Table Partitioner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-3-decision-tree-learner">5.3 Node 3: Decision Tree Learner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-4-decision-tree-predictor">5.4 Node 4: Decision Tree Predictor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-5-scorer">5.5 Node 5: Scorer</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">Confusion Matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil">Analisis Hasil</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">6. Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">7. Referensi</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="analisis-data-menggunakan-pohon-keputusan-decision-tree">
+<h1>Analisis Data Menggunakan Pohon Keputusan (Decision Tree)<a class="headerlink" href="#analisis-data-menggunakan-pohon-keputusan-decision-tree" title="Link to this heading">#</a></h1>
+<p><strong>Mata Kuliah:</strong> Penambangan Data<br />
+<strong>Dataset:</strong> Iris Dataset<br />
+<strong>Tools:</strong> KNIME Analytics Platform</p>
+<hr class="docutils" />
+<section id="konsep-dasar-pohon-keputusan">
+<h2>1. Konsep Dasar Pohon Keputusan<a class="headerlink" href="#konsep-dasar-pohon-keputusan" title="Link to this heading">#</a></h2>
+<section id="apa-itu-pohon-keputusan">
+<h3>Apa Itu Pohon Keputusan?<a class="headerlink" href="#apa-itu-pohon-keputusan" title="Link to this heading">#</a></h3>
+<p>Pohon Keputusan (<em>Decision Tree</em>) adalah salah satu algoritma klasifikasi yang paling populer dalam Machine Learning dan Data Mining. Algoritma ini bekerja dengan cara membagi data secara rekursif berdasarkan nilai atribut tertentu, membentuk struktur seperti pohon yang terdiri dari:</p>
+<ul class="simple">
+<li><p><strong>Root Node (Akar):</strong> Node teratas yang mewakili seluruh dataset. Pemisahan pertama dimulai dari sini.</p></li>
+<li><p><strong>Internal Node (Simpul Internal):</strong> Merepresentasikan sebuah pengujian (tes) pada suatu atribut/fitur.</p></li>
+<li><p><strong>Branch (Cabang):</strong> Merepresentasikan hasil dari pengujian tersebut.</p></li>
+<li><p><strong>Leaf Node (Daun):</strong> Node terminal yang merepresentasikan label kelas (hasil prediksi).</p></li>
+</ul>
+</section>
+<section id="cara-kerja-algoritma">
+<h3>Cara Kerja Algoritma<a class="headerlink" href="#cara-kerja-algoritma" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Mulai dari seluruh dataset di root node.</p></li>
+<li><p>Pilih atribut terbaik sebagai pemisah berdasarkan suatu ukuran kualitas (misalnya Gain Ratio).</p></li>
+<li><p>Bagi dataset menjadi subset berdasarkan nilai atribut tersebut.</p></li>
+<li><p>Ulangi proses secara rekursif untuk setiap subset hingga kondisi berhenti terpenuhi (semua data dalam satu node memiliki kelas yang sama, atau tidak ada atribut yang tersisa).</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="ukuran-pembangunan-pohon-gain-ratio">
+<h2>2. Ukuran Pembangunan Pohon: Gain Ratio<a class="headerlink" href="#ukuran-pembangunan-pohon-gain-ratio" title="Link to this heading">#</a></h2>
+<section id="entropy">
+<h3>2.1 Entropy<a class="headerlink" href="#entropy" title="Link to this heading">#</a></h3>
+<p>Sebelum memahami Gain Ratio, perlu dipahami konsep <strong>Entropy</strong>, yaitu ukuran ketidakmurnian (<em>impurity</em>) atau ketidakpastian dalam suatu kumpulan data.</p>
+<div class="math notranslate nohighlight">
+\[H(S) = -\sum_{i=1}^{c} p_i \log_2(p_i)\]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S\)</span> = kumpulan data</p></li>
+<li><p><span class="math notranslate nohighlight">\(c\)</span> = jumlah kelas</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_i\)</span> = proporsi sampel yang termasuk kelas <span class="math notranslate nohighlight">\(i\)</span></p></li>
+</ul>
+<p>Nilai entropy = 0 berarti data murni (hanya satu kelas), sedangkan entropy maksimum berarti data tersebar merata di semua kelas.</p>
+</section>
+<section id="information-gain">
+<h3>2.2 Information Gain<a class="headerlink" href="#information-gain" title="Link to this heading">#</a></h3>
+<p><strong>Information Gain</strong> mengukur seberapa besar pengurangan entropy setelah data dibagi berdasarkan suatu atribut <span class="math notranslate nohighlight">\(A\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[IG(S, A) = H(S) - \sum_{v \in Values(A)} \frac{|S_v|}{|S|} \cdot H(S_v)\]</div>
+<p>Di mana:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H(S)\)</span> = entropy sebelum pemisahan</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_v\)</span> = subset data dengan nilai atribut <span class="math notranslate nohighlight">\(A = v\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(|S_v| / |S|\)</span> = proporsi data pada subset <span class="math notranslate nohighlight">\(v\)</span></p></li>
+</ul>
+<p><strong>Kelemahan Information Gain:</strong> Cenderung memilih atribut dengan jumlah nilai unik yang banyak (misalnya ID), karena pemisahan yang banyak menghasilkan entropy kecil secara artifisial.</p>
+</section>
+<section id="gain-ratio-yang-digunakan-dalam-eksperimen-ini">
+<h3>2.3 Gain Ratio (yang digunakan dalam eksperimen ini)<a class="headerlink" href="#gain-ratio-yang-digunakan-dalam-eksperimen-ini" title="Link to this heading">#</a></h3>
+<p><strong>Gain Ratio</strong> adalah penyempurnaan dari Information Gain yang menghukum atribut dengan banyak nilai unik, menggunakan nilai <strong>Split Information</strong>:</p>
+<div class="math notranslate nohighlight">
+\[SplitInfo(S, A) = -\sum_{v \in Values(A)} \frac{|S_v|}{|S|} \log_2\left(\frac{|S_v|}{|S|}\right)\]</div>
+<div class="math notranslate nohighlight">
+\[GainRatio(S, A) = \frac{IG(S, A)}{SplitInfo(S, A)}\]</div>
+<p><strong>Keunggulan Gain Ratio:</strong></p>
+<ul class="simple">
+<li><p>Lebih adil dalam memilih atribut pemisah.</p></li>
+<li><p>Tidak bias terhadap atribut dengan banyak nilai.</p></li>
+<li><p>Digunakan dalam algoritma <strong>C4.5</strong> (evolusi dari ID3).</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="dataset-iris">
+<h2>3. Dataset Iris<a class="headerlink" href="#dataset-iris" title="Link to this heading">#</a></h2>
+<p>Dataset Iris adalah dataset klasik dalam machine learning, terdiri dari <strong>150 baris</strong> dan <strong>5 kolom</strong>:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kolom</p></th>
+<th class="head"><p>Tipe</p></th>
+<th class="head"><p>Deskripsi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sepal_length</span></code></p></td>
+<td><p>Double</p></td>
+<td><p>Panjang kelopak bunga (cm)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">sepal_width</span></code></p></td>
+<td><p>Double</p></td>
+<td><p>Lebar kelopak bunga (cm)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">petal_length</span></code></p></td>
+<td><p>Double</p></td>
+<td><p>Panjang mahkota bunga (cm)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">petal_width</span></code></p></td>
+<td><p>Double</p></td>
+<td><p>Lebar mahkota bunga (cm)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">species</span></code></p></td>
+<td><p>String</p></td>
+<td><p>Jenis bunga (target/label)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Tiga kelas target:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Iris-setosa</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Iris-versicolor</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Iris-virginica</span></code></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="workflow-knime">
+<h2>4. Workflow KNIME<a class="headerlink" href="#workflow-knime" title="Link to this heading">#</a></h2>
+<p>Workflow yang dibangun terdiri dari <strong>4 node utama</strong> yang terhubung secara berurutan:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>CSV Reader → Table Partitioner → Decision Tree Learner → Decision Tree Predictor → Scorer
+</pre></div>
+</div>
+<section id="gambaran-umum-workflow">
+<h3>Gambaran Umum Workflow<a class="headerlink" href="#gambaran-umum-workflow" title="Link to this heading">#</a></h3>
+<p><img alt="Workflow KNIME - Pohon Keputusan" src="_images/PohonKeputusan2.png" /><br />
+<em>Gambar 2: Tampilan keseluruhan workflow KNIME PohonKeputusan</em></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="penjelasan-setiap-node">
+<h2>5. Penjelasan Setiap Node<a class="headerlink" href="#penjelasan-setiap-node" title="Link to this heading">#</a></h2>
+<section id="node-1-csv-reader">
+<h3>5.1 Node 1: CSV Reader<a class="headerlink" href="#node-1-csv-reader" title="Link to this heading">#</a></h3>
+<p>Node ini digunakan untuk <strong>membaca dataset</strong> dari file CSV yang tersimpan di sistem lokal.</p>
+<p><img alt="Konfigurasi CSV Reader" src="_images/PohonKeputusan1.png" /><br />
+<em>Gambar 1: Konfigurasi node CSV Reader membaca file IRIS.csv</em></p>
+<p><strong>Konfigurasi yang digunakan:</strong></p>
+<ul class="simple">
+<li><p><strong>Read from:</strong> Local File System</p></li>
+<li><p><strong>File:</strong> <code class="docutils literal notranslate"><span class="pre">C:\Users\kiyan\OneDrive\Documents\IRIS.csv</span></code></p></li>
+<li><p><strong>Column delimiter:</strong> <code class="docutils literal notranslate"><span class="pre">,</span></code> (koma)</p></li>
+<li><p><strong>Row delimiter:</strong> Line break</p></li>
+<li><p><strong>Has column header:</strong> ✅ Dicentang (baris pertama sebagai nama kolom)</p></li>
+<li><p><strong>Has RowID:</strong> ❌ Tidak dicentang</p></li>
+</ul>
+<p><strong>Output:</strong> Tabel dengan 150 baris dan 5 kolom (sepal_length, sepal_width, petal_length, petal_width, species).</p>
+</section>
+<hr class="docutils" />
+<section id="node-2-table-partitioner">
+<h3>5.2 Node 2: Table Partitioner<a class="headerlink" href="#node-2-table-partitioner" title="Link to this heading">#</a></h3>
+<p>Node ini digunakan untuk <strong>membagi dataset</strong> menjadi dua bagian: data latih (<em>training set</em>) dan data uji (<em>test set</em>).</p>
+<p><img alt="Konfigurasi Table Partitioner" src="_images/PohonKeputusan2.png" /><br />
+<em>Gambar 2: Konfigurasi Table Partitioner dengan stratified sampling</em></p>
+<p><strong>Konfigurasi yang digunakan:</strong></p>
+<ul class="simple">
+<li><p><strong>First partition type:</strong> Relative (%)</p></li>
+<li><p><strong>Relative size:</strong> <strong>70%</strong> → data latih (105 baris)</p></li>
+<li><p><strong>Remaining:</strong> <strong>30%</strong> → data uji (45 baris)</p></li>
+<li><p><strong>Sampling strategy:</strong> <strong>Stratified</strong> — memastikan proporsi setiap kelas terjaga di kedua partisi</p></li>
+<li><p><strong>Group column:</strong> <code class="docutils literal notranslate"><span class="pre">species</span></code></p></li>
+<li><p><strong>Fixed random seed:</strong> 1678807467440</p></li>
+</ul>
+<p><strong>Mengapa Stratified?</strong><br />
+Stratified sampling memastikan setiap kelas (Iris-setosa, Iris-versicolor, Iris-virginica) terwakili secara proporsional di data latih maupun data uji, sehingga model tidak belajar dari data yang tidak seimbang.</p>
+<p><strong>Output:</strong></p>
+<ul class="simple">
+<li><p>Port 1: <strong>105 baris</strong> → data latih (dikirim ke Decision Tree Learner)</p></li>
+<li><p>Port 2: <strong>45 baris</strong> → data uji (dikirim ke Decision Tree Predictor)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="node-3-decision-tree-learner">
+<h3>5.3 Node 3: Decision Tree Learner<a class="headerlink" href="#node-3-decision-tree-learner" title="Link to this heading">#</a></h3>
+<p>Node ini adalah inti dari workflow — digunakan untuk <strong>melatih model pohon keputusan</strong> dari data latih.</p>
+<p><img alt="Konfigurasi Decision Tree Learner" src="_images/PohonKeputusan3.png" /><br />
+<em>Gambar 3: Konfigurasi Decision Tree Learner</em></p>
+<p><strong>Konfigurasi yang digunakan:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Nilai</p></th>
+<th class="head"><p>Penjelasan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Class column</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">species</span></code></p></td>
+<td><p>Kolom target yang ingin diprediksi</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quality measure</p></td>
+<td><p><strong>Gain ratio</strong></p></td>
+<td><p>Ukuran pemilihan atribut terbaik</p></td>
+</tr>
+<tr class="row-even"><td><p>Pruning method</p></td>
+<td><p><strong>MDL</strong></p></td>
+<td><p>Minimum Description Length — mencegah overfitting</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reduced Error Pruning</p></td>
+<td><p>✅</p></td>
+<td><p>Pemangkasan tambahan untuk menyederhanakan pohon</p></td>
+</tr>
+<tr class="row-even"><td><p>Min number records per node</p></td>
+<td><p>2</p></td>
+<td><p>Minimal 2 data untuk membuat split baru</p></td>
+</tr>
+<tr class="row-odd"><td><p>Average split point</p></td>
+<td><p>✅</p></td>
+<td><p>Menggunakan rata-rata sebagai titik pemisah numerik</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Mengapa MDL Pruning?</strong><br />
+Pruning (pemangkasan) bertujuan mengurangi kompleksitas pohon agar tidak <em>overfit</em> terhadap data latih. MDL memangkas cabang yang tidak memberikan gain informasi yang signifikan.</p>
+<p><strong>Output Model (PMML - Gambar 4):</strong></p>
+<p><img alt="PMML Decision Tree Model" src="_images/PohonKeputusan4.png" /><br />
+<em>Gambar 4: Struktur model pohon keputusan dalam format PMML</em></p>
+<p>Dari output PMML terlihat struktur pohon yang dibangun:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Root (105 records)
+├── IF petal_width ≤ 0.8 → Iris-setosa (35 records) ✅
+└── IF petal_width &gt; 0.8 (70 records)
+    ├── IF petal_width ≤ 1.65 → Iris-versicolor (36 records)
+    │   ├── [34 versicolor, 2 virginica]
+    └── IF petal_width &gt; 1.65 → Iris-virginica (34 records)
+        ├── [1 versicolor, 33 virginica]
+</pre></div>
+</div>
+<p><strong>Insight:</strong> Atribut <code class="docutils literal notranslate"><span class="pre">petal_width</span></code> (lebar mahkota) menjadi fitur paling penting dan dipilih sebagai root split, karena memiliki Gain Ratio tertinggi.</p>
+</section>
+<hr class="docutils" />
+<section id="node-4-decision-tree-predictor">
+<h3>5.4 Node 4: Decision Tree Predictor<a class="headerlink" href="#node-4-decision-tree-predictor" title="Link to this heading">#</a></h3>
+<p>Node ini digunakan untuk <strong>menerapkan model</strong> yang sudah dilatih ke data uji (45 baris dari Table Partitioner port 2).</p>
+<p><img alt="Konfigurasi Decision Tree Predictor" src="_images/PohonKeputusan5.png" /><br />
+<em>Gambar 5: Konfigurasi Decision Tree Predictor dan hasil prediksi</em></p>
+<p><strong>Konfigurasi yang digunakan:</strong></p>
+<ul class="simple">
+<li><p><strong>Change prediction column name:</strong> ❌ (menggunakan nama default)</p></li>
+<li><p><strong>Prediction column name:</strong> <code class="docutils literal notranslate"><span class="pre">Prediction</span> <span class="pre">(species)</span></code></p></li>
+<li><p><strong>Append columns with normalized class distribution:</strong> ❌</p></li>
+</ul>
+<p><strong>Output:</strong> Tabel 45 baris dengan kolom tambahan <code class="docutils literal notranslate"><span class="pre">Prediction</span> <span class="pre">(species)</span></code> yang berisi hasil prediksi model.</p>
+<p>Contoh hasil prediksi (beberapa baris pertama):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>RowID</p></th>
+<th class="head"><p>sepal_length</p></th>
+<th class="head"><p>sepal_width</p></th>
+<th class="head"><p>petal_length</p></th>
+<th class="head"><p>petal_width</p></th>
+<th class="head"><p>species</p></th>
+<th class="head"><p>Prediction (species)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Row5</p></td>
+<td><p>5.4</p></td>
+<td><p>3.9</p></td>
+<td><p>1.7</p></td>
+<td><p>0.4</p></td>
+<td><p>Iris-setosa</p></td>
+<td><p>Iris-setosa ✅</p></td>
+</tr>
+<tr class="row-odd"><td><p>Row11</p></td>
+<td><p>4.8</p></td>
+<td><p>3.4</p></td>
+<td><p>1.6</p></td>
+<td><p>0.2</p></td>
+<td><p>Iris-setosa</p></td>
+<td><p>Iris-setosa ✅</p></td>
+</tr>
+<tr class="row-even"><td><p>Row13</p></td>
+<td><p>4.3</p></td>
+<td><p>3.0</p></td>
+<td><p>1.1</p></td>
+<td><p>0.1</p></td>
+<td><p>Iris-setosa</p></td>
+<td><p>Iris-setosa ✅</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="node-5-scorer">
+<h3>5.5 Node 5: Scorer<a class="headerlink" href="#node-5-scorer" title="Link to this heading">#</a></h3>
+<p>Node ini digunakan untuk <strong>mengevaluasi performa model</strong> dengan membandingkan nilai aktual (<code class="docutils literal notranslate"><span class="pre">species</span></code>) dengan hasil prediksi (<code class="docutils literal notranslate"><span class="pre">Prediction</span> <span class="pre">(species)</span></code>).</p>
+<p><img alt="Confusion Matrix - Scorer" src="_images/PohonKeputusan6.png" /><br />
+<em>Gambar 6: Konfigurasi Scorer dan confusion matrix hasil evaluasi</em></p>
+<p><strong>Konfigurasi yang digunakan:</strong></p>
+<ul class="simple">
+<li><p><strong>First column:</strong> <code class="docutils literal notranslate"><span class="pre">Prediction</span> <span class="pre">(species)</span></code></p></li>
+<li><p><strong>Second column:</strong> <code class="docutils literal notranslate"><span class="pre">species</span></code></p></li>
+<li><p><strong>Sorting strategy:</strong> Insertion order</p></li>
+</ul>
+<section id="confusion-matrix">
+<h4>Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Iris-setosa</p></th>
+<th class="head"><p>Iris-versicolor</p></th>
+<th class="head"><p>Iris-virginica</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Iris-setosa</strong></p></td>
+<td><p><strong>15</strong></p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Iris-versicolor</strong></p></td>
+<td><p>0</p></td>
+<td><p><strong>14</strong></p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Iris-virginica</strong></p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p><strong>13</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="analisis-hasil">
+<h4>Analisis Hasil<a class="headerlink" href="#analisis-hasil" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metrik</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Total data uji</p></td>
+<td><p>45</p></td>
+</tr>
+<tr class="row-odd"><td><p>Prediksi benar</p></td>
+<td><p>15 + 14 + 13 = <strong>42</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Prediksi salah</p></td>
+<td><p>2 + 1 = <strong>3</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Akurasi</strong></p></td>
+<td><p><strong>42/45 = 93.33%</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Interpretasi:</strong></p>
+<ul class="simple">
+<li><p><strong>Iris-setosa</strong> diklasifikasikan sempurna — 15/15 benar (100%).</p></li>
+<li><p><strong>Iris-versicolor</strong> — 2 data salah diprediksi sebagai Iris-virginica.</p></li>
+<li><p><strong>Iris-virginica</strong> — 1 data salah diprediksi sebagai Iris-versicolor.</p></li>
+<li><p>Kesalahan klasifikasi hanya terjadi antara <em>versicolor</em> dan <em>virginica</em>, karena kedua spesies ini memiliki nilai <code class="docutils literal notranslate"><span class="pre">petal_width</span></code> yang tumpang tindih di sekitar nilai threshold 1.65.</p></li>
+</ul>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan">
+<h2>6. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Model Pohon Keputusan yang dibangun dengan KNIME menggunakan dataset Iris berhasil mencapai <strong>akurasi 93.33%</strong> pada data uji (45 data). Beberapa poin penting:</p>
+<ol class="arabic simple">
+<li><p><strong>Gain Ratio</strong> terbukti efektif dalam memilih atribut pemisah yang tidak bias, menghasilkan pohon yang sederhana namun akurat.</p></li>
+<li><p><strong>Fitur <code class="docutils literal notranslate"><span class="pre">petal_width</span></code></strong> adalah fitur paling diskriminatif untuk membedakan ketiga spesies bunga Iris.</p></li>
+<li><p><strong>Stratified sampling</strong> memastikan evaluasi model yang adil dan representatif.</p></li>
+<li><p><strong>Pruning MDL</strong> berhasil menghasilkan pohon yang tidak terlalu kompleks, sehingga menghindari overfitting.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="referensi">
+<h2>7. Referensi<a class="headerlink" href="#referensi" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Quinlan, J.R. (1993). <em>C4.5: Programs for Machine Learning</em>. Morgan Kaufmann.</p></li>
+<li><p>Han, J., Kamber, M., &amp; Pei, J. (2011). <em>Data Mining: Concepts and Techniques</em> (3rd ed.). Morgan Kaufmann.</p></li>
+<li><p>KNIME Documentation: <a class="reference external" href="https://docs.knime.com">https://docs.knime.com</a></p></li>
+<li><p>UCI Machine Learning Repository — Iris Dataset: <a class="reference external" href="https://archive.ics.uci.edu/ml/datasets/iris">https://archive.ics.uci.edu/ml/datasets/iris</a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tugas-naive-bayes.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Analisis Data Menggunakan Naive Bayes</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-pohon-keputusan">1. Konsep Dasar Pohon Keputusan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-pohon-keputusan">Apa Itu Pohon Keputusan?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja-algoritma">Cara Kerja Algoritma</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ukuran-pembangunan-pohon-gain-ratio">2. Ukuran Pembangunan Pohon: Gain Ratio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#entropy">2.1 Entropy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#information-gain">2.2 Information Gain</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gain-ratio-yang-digunakan-dalam-eksperimen-ini">2.3 Gain Ratio (yang digunakan dalam eksperimen ini)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-iris">3. Dataset Iris</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-knime">4. Workflow KNIME</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gambaran-umum-workflow">Gambaran Umum Workflow</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-setiap-node">5. Penjelasan Setiap Node</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-1-csv-reader">5.1 Node 1: CSV Reader</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-2-table-partitioner">5.2 Node 2: Table Partitioner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-3-decision-tree-learner">5.3 Node 3: Decision Tree Learner</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-4-decision-tree-predictor">5.4 Node 4: Decision Tree Predictor</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#node-5-scorer">5.5 Node 5: Scorer</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">Confusion Matrix</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-hasil">Analisis Hasil</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">6. Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">7. Referensi</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Rafli Khiyanuran Bazhari
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
