@@ -1,0 +1,1761 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Laporan Analisis Penambangan Data &#8212; Portofolio Data Mining</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=13ac56ea" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'uas-analisis-data-uc-irvine';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="TUGAS ANALISA DATA" href="tugas-analisa-data.html" />
+    <link rel="prev" title="Peramalan Kadar NO₂ di Daerah Surabaya" href="tugas-crawling-data-no2.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Portofolio Data Mining - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Portofolio Data Mining - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    240411100001_Rafli Khiyanuran Bazhari
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="business-understanding.html">Business Understanding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data-understanding.html">Data Understanding</a></li>
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="data-preparation.html">Data Preparation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modelling.html">Modelling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="laporan-analisis-kesuburan-tanah.html">Laporan Analisis Kesuburan Tanah</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas-naive-bayes.html">TUGAS NAIVE BAYES</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas-analisa-data-menggunakan-pohon-keputusan.html">TUGAS Analisa Data Menggunakan Pohon Keputusan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas-analisa-data-menggunakan-regresi-linier.html">Tugas Pertemuan 13: Analisa Data Menggunakan Regresi Linier</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="tugas-crawling-data-no2.html">TUGAS Crawling Data NO2</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">UAS ANALISIS DATA UC IRVINE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tugas-analisa-data.html">TUGAS ANALISA DATA</a></li>
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/uas-analisis-data-uc-irvine.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Laporan Analisis Penambangan Data</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-higher-education-students-performance-evaluation">Dataset: Higher Education Students Performance Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uci-machine-learning-repository-id-856">UCI Machine Learning Repository — ID 856</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daftar-isi">Daftar Isi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-dataset">1. Deskripsi Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-variabel">2. Deskripsi Variabel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-di-orange-data-mining">3. Analisis di Orange Data Mining</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-load-data">3.1 Persiapan &amp; Load Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-awal-data-table-column-statistics">3.2 Eksplorasi Awal: Data Table &amp; Column Statistics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-data-distributions">3.3 Distribusi Data (Distributions)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot">3.4 Scatter Plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot">3.5 Box Plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-map">3.6 Heat Map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-select-columns-continuize">3.7 Preprocessing: Select Columns &amp; Continuize</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-select-columns-menentukan-fitur-target-dan-meta">A. Select Columns — Menentukan Fitur, Target, dan Meta</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-continuize-mengubah-fitur-kategorikal">B. Continuize — Mengubah Fitur Kategorikal</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan-evaluasi-test-and-score">3.8 Pemodelan &amp; Evaluasi: Test and Score</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-menambahkan-test-and-score">A. Menambahkan Test and Score</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-menambahkan-model-decision-tree">B. Menambahkan Model Decision Tree</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-menambahkan-model-naive-bayes-knn-dan-random-forest">C. Menambahkan Model Naive Bayes, kNN, dan Random Forest</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-hasil-evaluasi-test-and-score">D. Hasil Evaluasi Test and Score</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-pohon-keputusan-tree-viewer">3.9 Visualisasi Pohon Keputusan (Tree Viewer)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">3.10 Confusion Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-akhir-orange">3.11 Workflow Akhir Orange</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-di-google-colab-python">4. Analisis di Google Colab (Python)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-import-library">4.1 Install &amp; Import Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">4.2 Load Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data-eda">4.3 Eksplorasi Data (EDA)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">4.4 Preprocessing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan-klasifikasi">4.5 Pemodelan Klasifikasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model">4.6 Evaluasi Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-pohon-keputusan">4.7 Visualisasi Pohon Keputusan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-hasil-model">5. Perbandingan Hasil Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-di-orange-regression-cross-validation-10-fold">Hasil di Orange (Regression — Cross Validation 10-Fold)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-perbandingan-probabilitas-model-orange">Analisis Perbandingan Probabilitas Model (Orange)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-utama-dari-analisis">Insight Utama dari Analisis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">6. Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">7. Referensi</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="laporan-analisis-penambangan-data">
+<h1>Laporan Analisis Penambangan Data<a class="headerlink" href="#laporan-analisis-penambangan-data" title="Link to this heading">#</a></h1>
+<section id="dataset-higher-education-students-performance-evaluation">
+<h2>Dataset: Higher Education Students Performance Evaluation<a class="headerlink" href="#dataset-higher-education-students-performance-evaluation" title="Link to this heading">#</a></h2>
+<section id="uci-machine-learning-repository-id-856">
+<h3>UCI Machine Learning Repository — ID 856<a class="headerlink" href="#uci-machine-learning-repository-id-856" title="Link to this heading">#</a></h3>
+<hr class="docutils" />
+<blockquote>
+<div><p><strong>Mata Kuliah:</strong> Penambangan Data<br />
+<strong>Dataset:</strong> Higher Education Students Performance Evaluation<br />
+<strong>Sumber:</strong> <a class="reference external" href="https://archive.ics.uci.edu/dataset/856/higher+education+students+performance+evaluation">https://archive.ics.uci.edu/dataset/856/higher+education+students+performance+evaluation</a><br />
+<strong>Tools:</strong> Orange Data Mining &amp; Google Colab (Python)</p>
+</div></blockquote>
+</section>
+</section>
+<hr class="docutils" />
+<section id="daftar-isi">
+<h2>Daftar Isi<a class="headerlink" href="#daftar-isi" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#1-deskripsi-dataset"><span class="xref myst">Deskripsi Dataset</span></a></p></li>
+<li><p><a class="reference internal" href="#2-deskripsi-variabel"><span class="xref myst">Deskripsi Variabel</span></a></p></li>
+<li><p><a class="reference internal" href="#3-analisis-di-orange-data-mining"><span class="xref myst">Analisis di Orange Data Mining</span></a></p>
+<ul class="simple">
+<li><p>3.1 <a class="reference internal" href="#31-persiapan--load-data"><span class="xref myst">Persiapan &amp; Load Data</span></a></p></li>
+<li><p>3.2 <a class="reference internal" href="#32-eksplorasi-awal-data-table--column-statistics"><span class="xref myst">Eksplorasi Awal: Data Table &amp; Column Statistics</span></a></p></li>
+<li><p>3.3 <a class="reference internal" href="#33-distribusi-data-distributions"><span class="xref myst">Distribusi Data (Distributions)</span></a></p></li>
+<li><p>3.4 <a class="reference internal" href="#34-scatter-plot"><span class="xref myst">Scatter Plot</span></a></p></li>
+<li><p>3.5 <a class="reference internal" href="#35-box-plot"><span class="xref myst">Box Plot</span></a></p></li>
+<li><p>3.6 <a class="reference internal" href="#36-heat-map"><span class="xref myst">Heat Map</span></a></p></li>
+<li><p>3.7 <a class="reference internal" href="#37-preprocessing-select-columns--continuize"><span class="xref myst">Preprocessing: Select Columns &amp; Continuize</span></a></p></li>
+<li><p>3.8 <a class="reference internal" href="#38-pemodelan--evaluasi-test-and-score"><span class="xref myst">Pemodelan &amp; Evaluasi: Test and Score</span></a></p></li>
+<li><p>3.9 <a class="reference internal" href="#39-visualisasi-pohon-keputusan-tree-viewer"><span class="xref myst">Visualisasi Pohon Keputusan (Tree Viewer)</span></a></p></li>
+<li><p>3.10 <a class="reference internal" href="#310-confusion-matrix"><span class="xref myst">Confusion Matrix</span></a></p></li>
+<li><p>3.11 <a class="reference internal" href="#311-workflow-akhir-orange"><span class="xref myst">Workflow Akhir Orange</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#4-analisis-di-google-colab-python"><span class="xref myst">Analisis di Google Colab (Python)</span></a></p>
+<ul class="simple">
+<li><p>4.1 <a class="reference internal" href="#41-install--import-library"><span class="xref myst">Install &amp; Import Library</span></a></p></li>
+<li><p>4.2 <a class="reference internal" href="#42-load-dataset"><span class="xref myst">Load Dataset</span></a></p></li>
+<li><p>4.3 <a class="reference internal" href="#43-eksplorasi-data-eda"><span class="xref myst">Eksplorasi Data (EDA)</span></a></p></li>
+<li><p>4.4 <a class="reference internal" href="#44-preprocessing"><span class="xref myst">Preprocessing</span></a></p></li>
+<li><p>4.5 <a class="reference internal" href="#45-pemodelan-klasifikasi"><span class="xref myst">Pemodelan Klasifikasi</span></a></p></li>
+<li><p>4.6 <a class="reference internal" href="#46-evaluasi-model"><span class="xref myst">Evaluasi Model</span></a></p></li>
+<li><p>4.7 <a class="reference internal" href="#47-visualisasi-pohon-keputusan"><span class="xref myst">Visualisasi Pohon Keputusan</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#5-perbandingan-hasil-model"><span class="xref myst">Perbandingan Hasil Model</span></a></p></li>
+<li><p><a class="reference internal" href="#6-kesimpulan"><span class="xref myst">Kesimpulan</span></a></p></li>
+<li><p><a class="reference internal" href="#7-referensi"><span class="xref myst">Referensi</span></a></p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="deskripsi-dataset">
+<h2>1. Deskripsi Dataset<a class="headerlink" href="#deskripsi-dataset" title="Link to this heading">#</a></h2>
+<p>Dataset <strong>Higher Education Students Performance Evaluation</strong> dikumpulkan dari mahasiswa Fakultas Teknik dan Fakultas Ilmu Pendidikan pada tahun 2019 di Near East University, Siprus. Tujuan utama dataset ini adalah <strong>memprediksi performa akhir semester mahasiswa</strong> menggunakan teknik Machine Learning.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Atribut</p></th>
+<th class="head"><p>Detail</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Jumlah Instance</p></td>
+<td><p>145 mahasiswa</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jumlah Fitur</p></td>
+<td><p>31 fitur + 1 target (GRADE)</p></td>
+</tr>
+<tr class="row-even"><td><p>Tipe Fitur</p></td>
+<td><p>Integer (Kategorikal &amp; Numerikal)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Target</p></td>
+<td><p>OUTPUT Grade (0–7)</p></td>
+</tr>
+<tr class="row-even"><td><p>Missing Values</p></td>
+<td><p>Tidak ada</p></td>
+</tr>
+<tr class="row-odd"><td><p>Task</p></td>
+<td><p>Classification / Regression</p></td>
+</tr>
+<tr class="row-even"><td><p>Lisensi</p></td>
+<td><p>CC BY 4.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sumber</p></td>
+<td><p>Yilmaz, N. &amp; Şekeroğlu, B. (2019)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Fitur-fitur dalam dataset dibagi menjadi tiga kelompok:</p>
+<ul class="simple">
+<li><p><strong>Pertanyaan Pribadi (1–10):</strong> usia, jenis kelamin, tipe SMA, beasiswa, pekerjaan tambahan, aktivitas, status hubungan, gaji, transportasi, dan akomodasi.</p></li>
+<li><p><strong>Pertanyaan Keluarga (11–16):</strong> pendidikan orang tua, jumlah saudara, status pernikahan orang tua, dan pekerjaan orang tua.</p></li>
+<li><p><strong>Kebiasaan Belajar (17–31):</strong> jam belajar, frekuensi membaca, kehadiran seminar, dampak proyek, kehadiran kelas, persiapan ujian, mencatat, mendengarkan, diskusi, flip classroom, IPK semester lalu, IPK harapan, dan Course ID.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="deskripsi-variabel">
+<h2>2. Deskripsi Variabel<a class="headerlink" href="#deskripsi-variabel" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>No</p></th>
+<th class="head"><p>Nama Variabel</p></th>
+<th class="head"><p>Keterangan</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Student Age</p></td>
+<td><p>Usia mahasiswa</p></td>
+<td><p>1: 18-21, 2: 22-25, 3: &gt;26</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Sex</p></td>
+<td><p>Jenis kelamin</p></td>
+<td><p>1: Perempuan, 2: Laki-laki</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Graduated HS Type</p></td>
+<td><p>Tipe SMA</p></td>
+<td><p>1: Swasta, 2: Negeri, 3: Lainnya</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Scholarship Type</p></td>
+<td><p>Beasiswa</p></td>
+<td><p>1: Tidak ada, 2: 25%, 3: 50%, 4: 75%, 5: Penuh</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Additional Work</p></td>
+<td><p>Pekerjaan tambahan</p></td>
+<td><p>1: Ya, 2: Tidak</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Artistic/Sports Activity</p></td>
+<td><p>Aktivitas seni/olahraga</p></td>
+<td><p>1: Ya, 2: Tidak</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Partner</p></td>
+<td><p>Memiliki pasangan</p></td>
+<td><p>1: Ya, 2: Tidak</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>Total Salary</p></td>
+<td><p>Gaji jika tersedia</p></td>
+<td><p>1–5 (USD 135 s/d &gt;410)</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>Transportation</p></td>
+<td><p>Transportasi ke kampus</p></td>
+<td><p>1: Bus, 2: Mobil, 3: Sepeda, 4: Lainnya</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>Accommodation</p></td>
+<td><p>Tipe akomodasi</p></td>
+<td><p>1: Sewa, 2: Asrama, 3: Keluarga, 4: Lainnya</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>Mother’s Education</p></td>
+<td><p>Pendidikan ibu</p></td>
+<td><p>1–6 (SD s/d Ph.D.)</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>Father’s Education</p></td>
+<td><p>Pendidikan ayah</p></td>
+<td><p>1–6 (SD s/d Ph.D.)</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>Siblings</p></td>
+<td><p>Jumlah saudara</p></td>
+<td><p>1–5 (1 s/d ≥5)</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>Parental Status</p></td>
+<td><p>Status orang tua</p></td>
+<td><p>1: Menikah, 2: Cerai, 3: Meninggal</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>Mother’s Occupation</p></td>
+<td><p>Pekerjaan ibu</p></td>
+<td><p>1–6</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>Father’s Occupation</p></td>
+<td><p>Pekerjaan ayah</p></td>
+<td><p>1–5</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p>Weekly Study Hours</p></td>
+<td><p>Jam belajar per minggu</p></td>
+<td><p>1: Tidak ada, 2: &lt;5 jam, 3: 6-10, 4: 11-20, 5: &gt;20</p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p>Reading (non-scientific)</p></td>
+<td><p>Frekuensi baca non-ilmiah</p></td>
+<td><p>1: Tidak, 2: Kadang, 3: Sering</p></td>
+</tr>
+<tr class="row-even"><td><p>19</p></td>
+<td><p>Reading (scientific)</p></td>
+<td><p>Frekuensi baca ilmiah</p></td>
+<td><p>1: Tidak, 2: Kadang, 3: Sering</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>Seminar Attendance</p></td>
+<td><p>Kehadiran seminar</p></td>
+<td><p>1: Ya, 2: Tidak</p></td>
+</tr>
+<tr class="row-even"><td><p>21</p></td>
+<td><p>Project Impact</p></td>
+<td><p>Dampak proyek ke nilai</p></td>
+<td><p>1: Positif, 2: Negatif, 3: Netral</p></td>
+</tr>
+<tr class="row-odd"><td><p>22</p></td>
+<td><p>Class Attendance</p></td>
+<td><p>Kehadiran kelas</p></td>
+<td><p>1: Selalu, 2: Kadang, 3: Tidak pernah</p></td>
+</tr>
+<tr class="row-even"><td><p>23</p></td>
+<td><p>Midterm Prep 1</p></td>
+<td><p>Cara belajar UTS (siapa)</p></td>
+<td><p>1: Sendiri, 2: Bersama, 3: N/A</p></td>
+</tr>
+<tr class="row-odd"><td><p>24</p></td>
+<td><p>Midterm Prep 2</p></td>
+<td><p>Cara belajar UTS (waktu)</p></td>
+<td><p>1: Menjelang ujian, 2: Rutin, 3: Tidak pernah</p></td>
+</tr>
+<tr class="row-even"><td><p>25</p></td>
+<td><p>Taking Notes</p></td>
+<td><p>Mencatat di kelas</p></td>
+<td><p>1: Tidak, 2: Kadang, 3: Selalu</p></td>
+</tr>
+<tr class="row-odd"><td><p>26</p></td>
+<td><p>Listening in Class</p></td>
+<td><p>Mendengarkan di kelas</p></td>
+<td><p>1: Tidak, 2: Kadang, 3: Selalu</p></td>
+</tr>
+<tr class="row-even"><td><p>27</p></td>
+<td><p>Discussion Impact</p></td>
+<td><p>Dampak diskusi</p></td>
+<td><p>1: Tidak, 2: Kadang, 3: Selalu</p></td>
+</tr>
+<tr class="row-odd"><td><p>28</p></td>
+<td><p>Flip Classroom</p></td>
+<td><p>Flip classroom</p></td>
+<td><p>1: Tidak berguna, 2: Berguna, 3: N/A</p></td>
+</tr>
+<tr class="row-even"><td><p>29</p></td>
+<td><p>Cumulative GPA (last)</p></td>
+<td><p>IPK semester lalu (/4.00)</p></td>
+<td><p>1: &lt;2.00, 2: 2.00-2.49, 3: 2.50-2.99, 4: 3.00-3.49, 5: &gt;3.49</p></td>
+</tr>
+<tr class="row-odd"><td><p>30</p></td>
+<td><p>Expected GPA (graduation)</p></td>
+<td><p>Target IPK kelulusan</p></td>
+<td><p>1–5 (sama dengan no. 29)</p></td>
+</tr>
+<tr class="row-even"><td><p>31</p></td>
+<td><p>Course ID</p></td>
+<td><p>ID mata kuliah</p></td>
+<td><p>Numerik</p></td>
+</tr>
+<tr class="row-odd"><td><p>TARGET</p></td>
+<td><p>GRADE</p></td>
+<td><p>Nilai akhir mata kuliah</p></td>
+<td><p>0: Fail, 1: DD, 2: DC, 3: CC, 4: CB, 5: BB, 6: BA, 7: AA</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="analisis-di-orange-data-mining">
+<h2>3. Analisis di Orange Data Mining<a class="headerlink" href="#analisis-di-orange-data-mining" title="Link to this heading">#</a></h2>
+<section id="persiapan-load-data">
+<h3>3.1 Persiapan &amp; Load Data<a class="headerlink" href="#persiapan-load-data" title="Link to this heading">#</a></h3>
+<p><strong>Langkah-langkah:</strong></p>
+<ol class="arabic simple">
+<li><p>Buka aplikasi <strong>Orange Data Mining</strong> (Download di: <a class="reference external" href="https://orangedatamining.com">https://orangedatamining.com</a>)</p></li>
+<li><p>Dari panel kiri, pilih widget <strong>File</strong> (Data → File), drag ke canvas</p></li>
+<li><p>Double-click widget File → klik ikon folder → pilih file <code class="docutils literal notranslate"><span class="pre">DATA</span> <span class="pre">(1).csv</span></code> yang sudah diunduh dari UCI</p></li>
+<li><p>Hubungkan widget <strong>File</strong> ke <strong>Data Table</strong> dengan menarik garis koneksi</p></li>
+<li><p>Double-click <strong>Data Table</strong> untuk melihat isi dataset (145 baris × 33 kolom termasuk STUDENT ID dan COURSE ID)</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="eksplorasi-awal-data-table-column-statistics">
+<h3>3.2 Eksplorasi Awal: Data Table &amp; Column Statistics<a class="headerlink" href="#eksplorasi-awal-data-table-column-statistics" title="Link to this heading">#</a></h3>
+<p><strong>Langkah-langkah:</strong></p>
+<ol class="arabic simple">
+<li><p>Dari Data Table, tarik koneksi ke widget <strong>Column Statistics</strong> (Visualize → Column Statistics)</p></li>
+<li><p>Pada koneksi, pilih <strong>Selected Data → Data</strong></p></li>
+<li><p>Double-click Column Statistics untuk melihat ringkasan statistik tiap kolom: mean, median, standar deviasi, min, max</p></li>
+</ol>
+<p><strong>Workflow tahap ini:</strong></p>
+<p><img alt="Workflow Awal: File → Data Table → Column Statistics &amp; Distributions" src="_images/gambar_01_workflow_awal_file_datatable_colstats_distributions.png" /></p>
+<p><em>Gambar 1: Workflow awal Orange — File dihubungkan ke Data Table, Column Statistics, dan Distributions</em></p>
+</section>
+<hr class="docutils" />
+<section id="distribusi-data-distributions">
+<h3>3.3 Distribusi Data (Distributions)<a class="headerlink" href="#distribusi-data-distributions" title="Link to this heading">#</a></h3>
+<p><strong>Langkah-langkah:</strong></p>
+<ol class="arabic simple">
+<li><p>Dari widget <strong>File</strong>, tarik koneksi ke widget <strong>Distributions</strong> (Visualize → Distributions)</p></li>
+<li><p>Double-click Distributions untuk membuka jendela distribusi</p></li>
+<li><p>Pada panel kiri, pilih variabel yang ingin dilihat distribusinya (misalnya variabel <strong>1</strong> = Student Age)</p></li>
+<li><p>Histogram akan muncul secara otomatis di panel kanan</p></li>
+</ol>
+<p><strong>Hasil Distribusi Variabel 1 (Student Age):</strong></p>
+<p><img alt="Distribusi Variabel 1 (Student Age)" src="_images/gambar_02_distributions_student_age.png" /></p>
+<p><em>Gambar 2: Distribusi usia mahasiswa — mayoritas berusia 22–25 tahun (nilai 2), diikuti 18–21 tahun (nilai 1), dan yang paling sedikit berusia &gt;26 tahun (nilai 3)</em></p>
+<p><strong>Interpretasi:</strong> Dataset ini didominasi oleh mahasiswa usia produktif 22–25 tahun (~70 mahasiswa), kemudian usia 18–21 (~65 mahasiswa), dan usia di atas 26 tahun hanya ~10 mahasiswa. Ini mencerminkan profil normal mahasiswa perguruan tinggi.</p>
+</section>
+<hr class="docutils" />
+<section id="scatter-plot">
+<h3>3.4 Scatter Plot<a class="headerlink" href="#scatter-plot" title="Link to this heading">#</a></h3>
+<p><strong>Langkah-langkah:</strong></p>
+<ol class="arabic simple">
+<li><p>Dari widget <strong>File</strong>, tarik koneksi ke <strong>Scatter Plot</strong> (Visualize → Scatter Plot)</p></li>
+<li><p>Double-click Scatter Plot untuk membukanya</p></li>
+<li><p><strong>Scatter Plot Dasar:</strong> Atur Axis X = variabel <strong>1</strong> (Age), Axis Y = variabel <strong>2</strong> (Sex) untuk melihat distribusi jenis kelamin berdasarkan usia</p></li>
+</ol>
+<p><strong>Scatter Plot Awal (Age vs Sex):</strong></p>
+<p><img alt="Scatter Plot Age vs Sex" src="_images/gambar_04_scatterplot_age_vs_sex.png" /></p>
+<p><em>Gambar 3: Scatter Plot variabel 1 (Age) vs variabel 2 (Sex) — pola grid menunjukkan kedua variabel bersifat kategorikal dengan nilai diskrit</em></p>
+<ol class="arabic simple" start="4">
+<li><p><strong>Scatter Plot Informatif:</strong> Ganti Axis X = <strong>17</strong> (Weekly Study Hours), Axis Y = <strong>29</strong> (Cumulative GPA), lalu pada bagian <strong>Color</strong> pilih <strong>GRADE</strong> untuk mewarnai titik berdasarkan nilai akhir</p></li>
+</ol>
+<p><strong>Scatter Plot Weekly Study Hours vs Cumulative GPA (diwarnai GRADE):</strong></p>
+<p><img alt="Scatter Plot Study Hours vs GPA colored by GRADE" src="_images/gambar_05_scatterplot_studyhours_vs_gpa_by_grade.png" /></p>
+<p><em>Gambar 4: Scatter Plot jam belajar mingguan (sumbu X) vs IPK semester lalu (sumbu Y), diwarnai berdasarkan GRADE. Warna kuning-hijau (GRADE tinggi) cenderung berkumpul di area IPK tinggi (Y=4–5), sedangkan warna biru gelap (GRADE rendah) tersebar di semua area</em></p>
+<p><strong>Interpretasi:</strong> Terdapat kecenderungan bahwa mahasiswa dengan IPK semester sebelumnya lebih tinggi (nilai 4–5) memiliki warna grade lebih tinggi (kuning). Namun, jam belajar saja tidak cukup menentukan grade secara linear.</p>
+<p><strong>Workflow setelah Scatter Plot ditambahkan:</strong></p>
+<p><img alt="Workflow dengan Scatter Plot" src="_images/gambar_03_workflow_dengan_scatterplot.png" /></p>
+<p><em>Gambar 5: Workflow Orange dengan Scatter Plot ditambahkan ke pipeline</em></p>
+</section>
+<hr class="docutils" />
+<section id="box-plot">
+<h3>3.5 Box Plot<a class="headerlink" href="#box-plot" title="Link to this heading">#</a></h3>
+<p><strong>Langkah-langkah:</strong></p>
+<ol class="arabic simple">
+<li><p>Dari widget <strong>File</strong>, tarik koneksi ke <strong>Box Plot</strong> (Visualize → Box Plot)</p></li>
+<li><p>Double-click Box Plot untuk membukanya</p></li>
+<li><p>Pilih variabel yang ingin dianalisis pada panel <strong>Variable</strong> di kiri</p></li>
+<li><p>Untuk melihat per kelompok, pilih variabel di panel <strong>Subgroups</strong></p></li>
+<li><p>Aktifkan <strong>Compare means</strong> pada bagian Display untuk melihat perbandingan</p></li>
+</ol>
+<p><strong>Box Plot Variabel 1 (Student Age):</strong></p>
+<p><img alt="Box Plot Student Age" src="_images/gambar_06_boxplot_student_age.png" /></p>
+<p><em>Gambar 6: Box Plot variabel 1 (Student Age) — mean = 1.62 ± 0.6, median berada di antara nilai 1 dan 2. Whisker panjang ke kanan menunjukkan adanya outlier mahasiswa berusia lebih tua</em></p>
+<p><strong>Box Plot Variabel 29 (Cumulative GPA) tanpa Subgroup:</strong></p>
+<p><img alt="Box Plot Cumulative GPA" src="_images/gambar_07_boxplot_cumulative_gpa.png" /></p>
+<p><em>Gambar 7: Box Plot variabel 29 (IPK semester lalu) — mean = 3.12 ± 1.3, menunjukkan distribusi yang cukup tersebar dengan rentang nilai 1–5. Median berada di nilai 3 (IPK 2.50–2.99)</em></p>
+<p><strong>Box Plot Variabel 29 dengan Subgroup Variabel 22 (Class Attendance) — Compare Means:</strong></p>
+<p><img alt="Box Plot GPA by Class Attendance" src="_images/gambar_08_boxplot_gpa_by_class_attendance_compare_means.png" /></p>
+<p><em>Gambar 8: Box Plot IPK dibagi berdasarkan kehadiran kelas (variabel 22). Hasil uji Student’s t = 2.323 (p=0.023, N=145) menunjukkan perbedaan signifikan. Mahasiswa yang selalu hadir (kelompok 1) memiliki rata-rata IPK lebih tinggi (3.25 ± 1.3) dibanding yang kadang-kadang hadir (kelompok 2) dengan rata-rata 2.71 ± 1.2</em></p>
+<p><strong>Interpretasi Penting:</strong> Nilai <strong>p=0.023 &lt; 0.05</strong> berarti kehadiran kelas berpengaruh signifikan secara statistik terhadap IPK. Ini adalah temuan penting: mahasiswa yang selalu hadir cenderung mendapatkan IPK lebih tinggi.</p>
+<p><strong>Workflow dengan Box Plot:</strong></p>
+<p><img alt="Workflow dengan Box Plot" src="_images/gambar_10_heatmap_semua_fitur_numerik.png" /></p>
+<p><em>Gambar 9: Workflow Orange dengan Box Plot ditambahkan</em></p>
+</section>
+<hr class="docutils" />
+<section id="heat-map">
+<h3>3.6 Heat Map<a class="headerlink" href="#heat-map" title="Link to this heading">#</a></h3>
+<p><strong>Langkah-langkah:</strong></p>
+<ol class="arabic simple">
+<li><p>Dari widget <strong>Scatter Plot</strong>, tarik koneksi ke <strong>Heat Map</strong> (Visualize → Heat Map), ATAU dari File langsung ke Heat Map</p></li>
+<li><p>Double-click Heat Map</p></li>
+<li><p>Pilih palette warna (disarankan <strong>Blue-Green-Yellow</strong>)</p></li>
+<li><p>Atur Clustering Rows/Columns jika ingin mengelompokkan otomatis</p></li>
+<li><p>Abaikan notifikasi tentang fitur kategorikal (fitur kategorikal memang diabaikan di Heat Map)</p></li>
+</ol>
+<p><strong>Heat Map Semua Fitur Numerik:</strong></p>
+<p><img alt="Heat Map" src="_images/gambar_11_workflow_dengan_heatmap.png" /></p>
+<p><em>Gambar 10: Heat Map semua fitur numerik dataset. Warna kuning menunjukkan nilai tinggi dan biru menunjukkan nilai rendah. Terlihat kolom GRADE dan variabel 29 (IPK) memiliki variasi warna yang mencolok. Catatan: fitur kategorikal diabaikan otomatis oleh Orange</em></p>
+<p><strong>Interpretasi:</strong> Heat Map memperlihatkan pola sebaran nilai seluruh fitur sekaligus. Kolom yang dominan kuning di beberapa baris menunjukkan mahasiswa dengan performa dan kebiasaan belajar tinggi secara konsisten.</p>
+<p><strong>Workflow dengan Heat Map:</strong></p>
+<p><img alt="Workflow dengan Heat Map" src="_images/gambar_12_select_columns_awal.png" /></p>
+<p><em>Gambar 11: Workflow Orange setelah Heat Map ditambahkan dari Scatter Plot</em></p>
+</section>
+<hr class="docutils" />
+<section id="preprocessing-select-columns-continuize">
+<h3>3.7 Preprocessing: Select Columns &amp; Continuize<a class="headerlink" href="#preprocessing-select-columns-continuize" title="Link to this heading">#</a></h3>
+<p>Sebelum melakukan pemodelan, data perlu dipersiapkan dengan benar.</p>
+<section id="a-select-columns-menentukan-fitur-target-dan-meta">
+<h4>A. Select Columns — Menentukan Fitur, Target, dan Meta<a class="headerlink" href="#a-select-columns-menentukan-fitur-target-dan-meta" title="Link to this heading">#</a></h4>
+<p><strong>Langkah-langkah:</strong></p>
+<ol class="arabic simple">
+<li><p>Dari widget <strong>File</strong>, tarik koneksi ke <strong>Select Columns</strong> (Data → Select Columns)</p></li>
+<li><p>Double-click Select Columns</p></li>
+<li><p>Pada panel <strong>Metas</strong>, biarkan <strong>STUDENT ID</strong> (tidak digunakan sebagai fitur)</p></li>
+<li><p><strong>Tahap awal</strong> — semua fitur masuk Features, Target masih kosong:</p></li>
+</ol>
+<p><img alt="Select Columns - Awal" src="_images/gambar_13_select_columns_grade_di_ignored.png" /></p>
+<p><em>Gambar 12: Tampilan awal Select Columns — 32 fitur aktif, STUDENT ID sebagai meta, Target belum diset</em></p>
+<ol class="arabic simple" start="5">
+<li><p>Pindahkan <strong>GRADE</strong> dari Features ke kolom <strong>Ignored</strong> terlebih dahulu:</p></li>
+</ol>
+<p><img alt="Select Columns - GRADE di Ignored" src="_images/gambar_14_select_columns_grade_sebagai_target.png" /></p>
+<p><em>Gambar 13: GRADE dipindah ke Ignored sementara untuk mempersiapkan assignment ke Target</em></p>
+<ol class="arabic simple" start="6">
+<li><p>Lalu pindahkan <strong>GRADE</strong> ke kolom <strong>Target</strong>:</p></li>
+</ol>
+<p><img alt="Select Columns - GRADE sebagai Target" src="_images/gambar_15_workflow_dengan_continuize.png" /></p>
+<p><em>Gambar 14: Konfigurasi final Select Columns — GRADE ditetapkan sebagai Target (variabel yang akan diprediksi), 31 fitur aktif, STUDENT ID sebagai meta</em></p>
+</section>
+<section id="b-continuize-mengubah-fitur-kategorikal">
+<h4>B. Continuize — Mengubah Fitur Kategorikal<a class="headerlink" href="#b-continuize-mengubah-fitur-kategorikal" title="Link to this heading">#</a></h4>
+<p><strong>Langkah-langkah:</strong></p>
+<ol class="arabic simple">
+<li><p>Dari <strong>Select Columns</strong>, tarik koneksi ke <strong>Continuize</strong> (Transform → Continuize)</p></li>
+<li><p>Double-click Continuize</p></li>
+<li><p>Pada <strong>Categorical Variables</strong>, pilih preset <strong>First value as base</strong> (mengubah kategorikal menjadi dummy/one-hot dengan nilai pertama sebagai baseline)</p></li>
+<li><p>Pada <strong>Numeric Variables</strong>, biarkan <strong>Keep as it is</strong></p></li>
+</ol>
+<p><strong>Tampilan Continuize:</strong></p>
+<p><img alt="Workflow dengan Continuize" src="_images/gambar_16_continuize_settings.png" /></p>
+<p><em>Gambar 15: Workflow dengan Continuize ditambahkan setelah Select Columns</em></p>
+<p><img alt="Continuize Settings" src="_images/gambar_17_workflow_test_and_score.png" /></p>
+<p><em>Gambar 16: Pengaturan Continuize — Categorical Variables menggunakan “First value as base”, Numeric Variables “Keep as it is”. Fitur kategorikal yang diproses: 2 (Sex), 5 (Additional Work), 6 (Activity), 7 (Partner), 20 (Seminar), 22 (Attendance)</em></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="pemodelan-evaluasi-test-and-score">
+<h3>3.8 Pemodelan &amp; Evaluasi: Test and Score<a class="headerlink" href="#pemodelan-evaluasi-test-and-score" title="Link to this heading">#</a></h3>
+<section id="a-menambahkan-test-and-score">
+<h4>A. Menambahkan Test and Score<a class="headerlink" href="#a-menambahkan-test-and-score" title="Link to this heading">#</a></h4>
+<p><strong>Langkah-langkah:</strong></p>
+<ol class="arabic simple">
+<li><p>Dari <strong>Continuize</strong>, tarik koneksi ke <strong>Test and Score</strong> (Evaluate → Test and Score)</p></li>
+<li><p>Double-click Test and Score</p></li>
+<li><p>Atur metode validasi: <strong>Cross Validation</strong>, Number of folds: <strong>10</strong>, centang <strong>Stratified</strong></p></li>
+</ol>
+<p><img alt="Workflow Test and Score" src="_images/gambar_18_test_and_score_settings.png" /></p>
+<p><em>Gambar 17: Workflow dengan Test and Score ditambahkan setelah Continuize</em></p>
+<p><img alt="Test and Score Settings" src="_images/gambar_19_search_widget_tree.png" /></p>
+<p><em>Gambar 18: Pengaturan Test and Score — Cross Validation 5-fold (kemudian diubah ke 10-fold), metrik evaluasi yang dipilih: MSE, RMSE, MAE, MAPE, sMAPE, R²</em></p>
+</section>
+<section id="b-menambahkan-model-decision-tree">
+<h4>B. Menambahkan Model Decision Tree<a class="headerlink" href="#b-menambahkan-model-decision-tree" title="Link to this heading">#</a></h4>
+<p><strong>Langkah-langkah:</strong></p>
+<ol class="arabic simple">
+<li><p>Cari widget <strong>Tree</strong> di panel kiri (ketik “tree” di kolom pencarian → pilih <strong>Tree</strong> dari kategori Model)</p></li>
+<li><p>Drag <strong>Tree</strong> ke canvas</p></li>
+<li><p>Hubungkan <strong>Tree → Test and Score</strong> dengan koneksi <strong>Learner</strong></p></li>
+</ol>
+<p><img alt="Search Tree Widget" src="_images/gambar_20_tree_ke_test_and_score.png" /></p>
+<p><em>Gambar 19: Mencari widget Tree di panel pencarian Orange</em></p>
+<p><img alt="Tree ke Test and Score" src="_images/gambar_21_semua_model_ke_test_and_score.png" /></p>
+<p><em>Gambar 20: Tree dihubungkan ke Test and Score dengan koneksi Learner</em></p>
+</section>
+<section id="c-menambahkan-model-naive-bayes-knn-dan-random-forest">
+<h4>C. Menambahkan Model Naive Bayes, kNN, dan Random Forest<a class="headerlink" href="#c-menambahkan-model-naive-bayes-knn-dan-random-forest" title="Link to this heading">#</a></h4>
+<p><strong>Langkah-langkah:</strong></p>
+<ol class="arabic simple">
+<li><p>Tambahkan widget <strong>Naive Bayes</strong> (Model → Naive Bayes), hubungkan ke Test and Score</p></li>
+<li><p>Tambahkan widget <strong>kNN</strong> (Model → kNN), hubungkan ke Test and Score</p></li>
+<li><p>Tambahkan widget <strong>Random Forest</strong> (Model → Random Forest), hubungkan ke Test and Score</p></li>
+</ol>
+<p><img alt="Semua Model ke Test and Score" src="_images/gambar_22_workflow_lengkap_dengan_model.png" /></p>
+<p><em>Gambar 21: Empat model (Naive Bayes, Tree, kNN, Random Forest) semuanya terhubung ke Test and Score sebagai Learner</em></p>
+<p><strong>Workflow lengkap dengan semua model:</strong></p>
+<p><img alt="Workflow Lengkap dengan Model" src="_images/gambar_23_metrik_evaluasi_dipilih.png" /></p>
+<p><em>Gambar 22: Workflow Orange lengkap — File → Scatter Plot, Heat Map, Column Statistics, Data Table, Distributions, Box Plot, Select Columns → Continuize → Tree → Test and Score, dengan Naive Bayes, kNN, dan Random Forest juga terhubung ke Test and Score</em></p>
+</section>
+<section id="d-hasil-evaluasi-test-and-score">
+<h4>D. Hasil Evaluasi Test and Score<a class="headerlink" href="#d-hasil-evaluasi-test-and-score" title="Link to this heading">#</a></h4>
+<p><strong>Persiapan — Metrik yang Dipilih:</strong></p>
+<p><img alt="Metrik Evaluasi" src="_images/gambar_24_hasil_test_and_score_semua_model.png" /></p>
+<p><em>Gambar 23: Daftar metrik yang diaktifkan untuk evaluasi: MSE, RMSE, MAE, MAPE, sMAPE, R², dan CVRMSE</em></p>
+<p><strong>Hasil Test and Score (Cross Validation 10-fold):</strong></p>
+<p><img alt="Hasil Test and Score" src="_images/gambar_25_tree_viewer_zoom_out.png" /></p>
+<p><em>Gambar 24: Hasil evaluasi 4 model dengan Cross Validation 10-fold</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>MSE</p></th>
+<th class="head"><p>RMSE</p></th>
+<th class="head"><p>MAE</p></th>
+<th class="head"><p>sMAPE</p></th>
+<th class="head"><p>R²</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Random Forest</strong></p></td>
+<td><p><strong>2.321</strong></p></td>
+<td><p><strong>1.524</strong></p></td>
+<td><p><strong>1.241</strong></p></td>
+<td><p>50.281</p></td>
+<td><p><strong>0.516</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>kNN</p></td>
+<td><p>3.272</p></td>
+<td><p>1.809</p></td>
+<td><p>1.520</p></td>
+<td><p>57.215</p></td>
+<td><p>0.318</p></td>
+</tr>
+<tr class="row-even"><td><p>Tree</p></td>
+<td><p>3.284</p></td>
+<td><p>1.812</p></td>
+<td><p>1.322</p></td>
+<td><p>49.752</p></td>
+<td><p>0.315</p></td>
+</tr>
+<tr class="row-odd"><td><p>Naive Bayes</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>— (Error)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p><strong>Naive Bayes gagal (error)</strong> karena dataset ini memiliki target berupa nilai kontinu/ordinal (GRADE 0–7), sementara Naive Bayes di Orange membutuhkan target kategorikal murni.</p>
+</div></blockquote>
+<p><strong>Tabel Perbandingan Probabilitas Antar Model (MSE):</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>kNN</p></th>
+<th class="head"><p>Random Forest</p></th>
+<th class="head"><p>Tree</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>kNN</p></td>
+<td><p>—</p></td>
+<td><p>0.991</p></td>
+<td><p>0.513</p></td>
+</tr>
+<tr class="row-odd"><td><p>Random Forest</p></td>
+<td><p>0.009</p></td>
+<td><p>—</p></td>
+<td><p>0.159</p></td>
+</tr>
+<tr class="row-even"><td><p>Tree</p></td>
+<td><p>0.487</p></td>
+<td><p>0.841</p></td>
+<td><p>—</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Nilai kecil (misal Random Forest vs kNN = 0.009) berarti Random Forest <strong>secara konsisten lebih baik</strong> dari kNN. Nilai mendekati 0.5 berarti tidak ada perbedaan signifikan.</p>
+<p><strong>Kesimpulan Evaluasi:</strong> <strong>Random Forest</strong> adalah model terbaik dengan R² = 0.516 dan RMSE = 1.524, mengungguli semua model lainnya.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="visualisasi-pohon-keputusan-tree-viewer">
+<h3>3.9 Visualisasi Pohon Keputusan (Tree Viewer)<a class="headerlink" href="#visualisasi-pohon-keputusan-tree-viewer" title="Link to this heading">#</a></h3>
+<p><strong>Langkah-langkah:</strong></p>
+<ol class="arabic simple">
+<li><p>Dari widget <strong>Tree</strong>, tarik koneksi ke <strong>Tree Viewer</strong> (Visualize → Tree Viewer)</p></li>
+<li><p>Alternatif: dari <strong>Test and Score</strong>, tarik koneksi ke Tree Viewer</p></li>
+<li><p>Double-click Tree Viewer untuk melihat struktur pohon keputusan</p></li>
+</ol>
+<p><strong>Tree Viewer — Tampilan Atas:</strong></p>
+<p><img alt="Tree Viewer Zoom Out" src="_images/gambar_26_tree_viewer_detail_zoom_in.png" /></p>
+<p><em>Gambar 25: Struktur pohon keputusan — total 91 nodes, 46 leaves. Root node menggunakan <strong>COURSE ID</strong> sebagai pemisah pertama, menunjukkan bahwa jenis mata kuliah adalah faktor paling determinan dalam memprediksi nilai</em></p>
+<p><strong>Tree Viewer — Zoom In:</strong></p>
+<p><img alt="Tree Viewer Detail" src="_images/gambar_28_workflow_akhir_orange_lengkap.png" /></p>
+<p><em>Gambar 26: Detail cabang pohon keputusan. Setiap node leaf menampilkan nilai prediksi ± standar deviasi dan jumlah instance. Contoh: node dengan nilai “2.8 ± 0.2 (4 instances)” artinya 4 mahasiswa dengan karakteristik tersebut diprediksi mendapat GRADE sekitar 2.8 (antara DC dan CC)</em></p>
+<p><strong>Interpretasi Tree:</strong> Pohon keputusan dimulai dari <strong>COURSE ID</strong> (pemisah utama), kemudian bercabang berdasarkan variabel lain seperti variabel <strong>29</strong> (IPK semester lalu). Pohon ini cukup dalam (91 node) yang menunjukkan model mampu menangkap pola kompleks, namun berpotensi overfitting.</p>
+</section>
+<hr class="docutils" />
+<section id="confusion-matrix">
+<h3>3.10 Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Link to this heading">#</a></h3>
+<p><strong>Langkah-langkah:</strong></p>
+<ol class="arabic simple">
+<li><p>Dari <strong>Test and Score</strong>, tarik koneksi ke <strong>Confusion Matrix</strong> (Evaluate → Confusion Matrix)</p></li>
+</ol>
+<p><img alt="Confusion Matrix Error" src="_images/gambar_27_confusion_matrix_error_regression.png" /></p>
+<p><em>Gambar 27: Confusion Matrix tidak dapat menampilkan hasil karena task ini adalah <strong>regresi</strong> (target GRADE bersifat numerik/ordinal 0–7), bukan klasifikasi biner. Orange menampilkan pesan “Confusion Matrix cannot show regression results”</em></p>
+<p><strong>Catatan Penting:</strong> Confusion Matrix hanya bekerja untuk <strong>klasifikasi</strong> (target kategorikal). Karena GRADE diperlakukan sebagai nilai numerik kontinu di pipeline ini, Confusion Matrix tidak applicable. Untuk menggunakannya, GRADE perlu diubah menjadi tipe <strong>Categorical</strong> di Select Columns.</p>
+</section>
+<hr class="docutils" />
+<section id="workflow-akhir-orange">
+<h3>3.11 Workflow Akhir Orange<a class="headerlink" href="#workflow-akhir-orange" title="Link to this heading">#</a></h3>
+<p><strong>Workflow Orange Lengkap:</strong></p>
+<p><img alt="Workflow Akhir Orange" src="_images/gambar_28_workflow_akhir_orange_lengkap.png" /></p>
+<p><em>Gambar 28: Workflow akhir Orange yang lengkap mencakup: (1) Visualisasi EDA — Scatter Plot, Heat Map, Column Statistics, Data Table, Distributions, Box Plot; (2) Preprocessing — Select Columns, Continuize; (3) Pemodelan — Tree, Naive Bayes, kNN, Random Forest ke Test and Score; (4) Evaluasi — Tree Viewer, Confusion Matrix</em></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="analisis-di-google-colab-python">
+<h2>4. Analisis di Google Colab (Python)<a class="headerlink" href="#analisis-di-google-colab-python" title="Link to this heading">#</a></h2>
+<section id="install-import-library">
+<h3>4.1 Install &amp; Import Library<a class="headerlink" href="#install-import-library" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install library yang diperlukan</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">ucimlrepo</span>
+
+<span class="c1"># Import semua library</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ucimlrepo</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_ucirepo</span>
+
+<span class="c1"># Scikit-learn untuk pemodelan</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">cross_val_score</span><span class="p">,</span> <span class="n">KFold</span><span class="p">,</span> <span class="n">StratifiedKFold</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">DecisionTreeRegressor</span><span class="p">,</span> <span class="n">plot_tree</span><span class="p">,</span> <span class="n">export_text</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">RandomForestClassifier</span><span class="p">,</span> <span class="n">RandomForestRegressor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KNeighborsClassifier</span><span class="p">,</span> <span class="n">KNeighborsRegressor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.naive_bayes</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span><span class="p">,</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">classification_report</span><span class="p">,</span> <span class="n">confusion_matrix</span><span class="p">,</span>
+                             <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">,</span>
+                             <span class="n">ConfusionMatrixDisplay</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">)</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="c1"># Setting tampilan</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;whitegrid&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Semua library berhasil diimport!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="load-dataset">
+<h3>4.2 Load Dataset<a class="headerlink" href="#load-dataset" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ====================================================</span>
+<span class="c1"># CARA 1: Load langsung dari UCI Repository</span>
+<span class="c1"># ====================================================</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">fetch_ucirepo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">856</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">features</span>  <span class="c1"># Fitur (31 kolom)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">targets</span>   <span class="c1"># Target: GRADE</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Metadata Dataset:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Jumlah Instance : </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Jumlah Fitur    : </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Distribusi GRADE:</span><span class="se">\n</span><span class="si">{</span><span class="n">y</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Gabungkan untuk EDA</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Shape dataset gabungan: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Kolom: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ====================================================</span>
+<span class="c1"># CARA 2: Load dari file CSV (jika sudah diunduh)</span>
+<span class="c1"># ====================================================</span>
+<span class="c1"># df = pd.read_csv(&#39;DATA (1).csv&#39;)</span>
+<span class="c1"># X = df.drop(columns=[&#39;STUDENT ID&#39;, &#39;GRADE&#39;])</span>
+<span class="c1"># y = df[&#39;GRADE&#39;]</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="eksplorasi-data-eda">
+<h3>4.3 Eksplorasi Data (EDA)<a class="headerlink" href="#eksplorasi-data-eda" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------</span>
+<span class="c1"># A. Informasi Dasar Dataset</span>
+<span class="c1"># --------------------------------------------------</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== INFO DATASET ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== STATISTIK DESKRIPTIF ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== MISSING VALUES ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Total missing: </span><span class="si">{</span><span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Output: Total missing: 0 (tidak ada missing values)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------</span>
+<span class="c1"># B. Distribusi Target (GRADE)</span>
+<span class="c1"># --------------------------------------------------</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">grade_labels</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s1">&#39;Fail&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="s1">&#39;DD&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="s1">&#39;DC&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="s1">&#39;CC&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span><span class="s1">&#39;CB&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">:</span><span class="s1">&#39;BB&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span><span class="s1">&#39;BA&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">:</span><span class="s1">&#39;AA&#39;</span><span class="p">}</span>
+
+<span class="c1"># Bar chart distribusi</span>
+<span class="n">grade_counts</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">grade_counts</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">grade_counts</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">grade_counts</span><span class="p">)))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;GRADE (0=Fail ... 7=AA)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Jumlah Mahasiswa&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Distribusi GRADE Mahasiswa&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">grade_counts</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="n">grade_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">grade_counts</span><span class="o">.</span><span class="n">index</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+<span class="c1"># Pie chart</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">grade_counts</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+            <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="n">grade_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">grade_counts</span><span class="o">.</span><span class="n">index</span><span class="p">],</span>
+            <span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="n">colors</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">grade_counts</span><span class="p">)))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Proporsi GRADE (%)&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Distribusi Nilai Akhir (GRADE) Mahasiswa&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;distribusi_grade.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------</span>
+<span class="c1"># C. Distribusi Fitur Utama</span>
+<span class="c1"># --------------------------------------------------</span>
+<span class="c1"># Mapping nama variabel</span>
+<span class="n">var_names</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Student Age&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Sex&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;HS Type&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">:</span> <span class="s1">&#39;Scholarship&#39;</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">:</span> <span class="s1">&#39;Add. Work&#39;</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="s1">&#39;Activity&#39;</span><span class="p">,</span> <span class="mi">7</span><span class="p">:</span> <span class="s1">&#39;Partner&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">:</span> <span class="s1">&#39;Salary&#39;</span><span class="p">,</span>
+    <span class="mi">9</span><span class="p">:</span> <span class="s1">&#39;Transport&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">:</span> <span class="s1">&#39;Accommodation&#39;</span><span class="p">,</span> <span class="mi">17</span><span class="p">:</span> <span class="s1">&#39;Study Hours/Week&#39;</span><span class="p">,</span>
+    <span class="mi">22</span><span class="p">:</span> <span class="s1">&#39;Class Attendance&#39;</span><span class="p">,</span> <span class="mi">29</span><span class="p">:</span> <span class="s1">&#39;Cumulative GPA&#39;</span>
+<span class="p">}</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="n">selected_vars</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">selected_vars</span><span class="p">):</span>
+    <span class="n">col_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">col_name</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">col_name</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+            <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">var_names</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">var</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;Var </span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Variabel </span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Distribusi Fitur-Fitur Utama&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;distribusi_fitur.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------</span>
+<span class="c1"># D. Heatmap Korelasi</span>
+<span class="c1"># --------------------------------------------------</span>
+<span class="c1"># Pilih fitur numerik saja</span>
+<span class="n">numeric_cols</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">number</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
+<span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">numeric_cols</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr_matrix</span><span class="p">,</span>
+            <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+            <span class="n">annot</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdYlBu_r&#39;</span><span class="p">,</span>
+            <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+            <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">linewidths</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+            <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;shrink&quot;</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">})</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Heatmap Korelasi Antar Variabel&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;heatmap_korelasi.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Top 10 fitur paling berkorelasi dengan GRADE</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== TOP 10 KORELASI DENGAN GRADE ===&quot;</span><span class="p">)</span>
+<span class="n">grade_corr</span> <span class="o">=</span> <span class="n">corr_matrix</span><span class="p">[</span><span class="s1">&#39;GRADE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">grade_corr</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">11</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------</span>
+<span class="c1"># E. Box Plot: IPK vs Kehadiran Kelas</span>
+<span class="c1"># --------------------------------------------------</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="n">attendance_labels</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s1">&#39;Selalu&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;Kadang&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="s1">&#39;Tidak Pernah&#39;</span><span class="p">}</span>
+
+<span class="c1"># Box plot GPA per kategori kehadiran</span>
+<span class="n">gpa_by_attend</span> <span class="o">=</span> <span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;22&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">][</span><span class="s1">&#39;29&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+<span class="n">bp</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">gpa_by_attend</span><span class="p">,</span> <span class="n">patch_artist</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                     <span class="n">medianprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#2196F3&#39;</span><span class="p">,</span> <span class="s1">&#39;#FF9800&#39;</span><span class="p">,</span> <span class="s1">&#39;#F44336&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">patch</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bp</span><span class="p">[</span><span class="s1">&#39;boxes&#39;</span><span class="p">],</span> <span class="n">colors</span><span class="p">):</span>
+    <span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">patch</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s1">&#39;Selalu&#39;</span><span class="p">,</span> <span class="s1">&#39;Kadang&#39;</span><span class="p">,</span> <span class="s1">&#39;Tidak Pernah&#39;</span><span class="p">])</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Kehadiran Kelas (Var 22)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;IPK Semester Lalu (Var 29)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;IPK vs Kehadiran Kelas&#39;</span><span class="p">)</span>
+
+<span class="c1"># Box plot GRADE per jam belajar</span>
+<span class="n">study_groups</span> <span class="o">=</span> <span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;17&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">i</span><span class="p">][</span><span class="s1">&#39;GRADE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
+<span class="n">bp2</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">study_groups</span><span class="p">,</span> <span class="n">patch_artist</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                      <span class="n">medianprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">palette2</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">patch</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bp2</span><span class="p">[</span><span class="s1">&#39;boxes&#39;</span><span class="p">],</span> <span class="n">palette2</span><span class="p">):</span>
+    <span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">patch</span><span class="o">.</span><span class="n">set_alpha</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s1">&#39;Tidak Ada&#39;</span><span class="p">,</span> <span class="s1">&#39;&lt;5 Jam&#39;</span><span class="p">,</span> <span class="s1">&#39;6-10 Jam&#39;</span><span class="p">,</span> <span class="s1">&#39;11-20 Jam&#39;</span><span class="p">,</span> <span class="s1">&#39;&gt;20 Jam&#39;</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Jam Belajar Mingguan (Var 17)&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;GRADE&#39;</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;GRADE vs Jam Belajar Mingguan&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Analisis Box Plot Faktor Akademik&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;boxplot_analisis.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------</span>
+<span class="c1"># F. Scatter Plot: Study Hours vs GPA</span>
+<span class="c1"># --------------------------------------------------</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+
+<span class="n">scatter</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;17&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;29&#39;</span><span class="p">],</span>
+                      <span class="n">c</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;GRADE&#39;</span><span class="p">],</span>
+                      <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span>
+                      <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">scatter</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;GRADE (0=Fail, 7=AA)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Jam Belajar Mingguan (1=Tidak Ada ... 5=&gt;20 Jam)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;IPK Semester Lalu (1=&lt;2.00 ... 5=&gt;3.49)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Scatter Plot: Jam Belajar vs IPK</span><span class="se">\n</span><span class="s1">(Diwarnai berdasarkan GRADE)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;scatter_study_gpa.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="preprocessing">
+<h3>4.4 Preprocessing<a class="headerlink" href="#preprocessing" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------</span>
+<span class="c1"># A. Persiapan Fitur dan Target</span>
+<span class="c1"># --------------------------------------------------</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="c1"># Ambil fitur dan target</span>
+<span class="n">feature_cols</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">31</span><span class="p">)]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;COURSE ID&#39;</span><span class="p">]</span>
+<span class="n">X_clean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">feature_cols</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">y_clean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;GRADE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape X: </span><span class="si">{</span><span class="n">X_clean</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape y: </span><span class="si">{</span><span class="n">y_clean</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Distribusi GRADE:</span><span class="se">\n</span><span class="si">{</span><span class="n">y_clean</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------</span>
+<span class="c1"># B. Encode Fitur Kategorikal</span>
+<span class="c1"># --------------------------------------------------</span>
+<span class="c1"># Fitur kategorikal (C di Orange): 2, 5, 6, 7, 20, 22</span>
+<span class="n">categorical_features</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="s1">&#39;6&#39;</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">,</span> <span class="s1">&#39;20&#39;</span><span class="p">,</span> <span class="s1">&#39;22&#39;</span><span class="p">]</span>
+
+<span class="n">X_encoded</span> <span class="o">=</span> <span class="n">X_clean</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># One-hot encoding untuk fitur kategorikal</span>
+<span class="n">X_encoded</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X_encoded</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">categorical_features</span><span class="p">,</span>
+                            <span class="n">prefix</span><span class="o">=</span><span class="n">categorical_features</span><span class="p">,</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape setelah encoding: </span><span class="si">{</span><span class="n">X_encoded</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Kolom baru: </span><span class="si">{</span><span class="n">X_encoded</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------</span>
+<span class="c1"># C. Normalisasi (opsional, untuk kNN)</span>
+<span class="c1"># --------------------------------------------------</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_encoded</span><span class="p">)</span>
+<span class="n">X_scaled_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">X_encoded</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Preprocessing selesai!&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Shape akhir X: </span><span class="si">{</span><span class="n">X_scaled_df</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="pemodelan-klasifikasi">
+<h3>4.5 Pemodelan Klasifikasi<a class="headerlink" href="#pemodelan-klasifikasi" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------</span>
+<span class="c1"># Persiapan: Ubah GRADE ke Klasifikasi</span>
+<span class="c1"># --------------------------------------------------</span>
+<span class="c1"># Untuk klasifikasi, pastikan y adalah integer</span>
+<span class="n">y_clf</span> <span class="o">=</span> <span class="n">y_clean</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Definisikan semua model</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;Decision Tree&#39;</span>  <span class="p">:</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+    <span class="s1">&#39;Random Forest&#39;</span>  <span class="p">:</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">),</span>
+    <span class="s1">&#39;kNN&#39;</span>            <span class="p">:</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span>
+    <span class="s1">&#39;Naive Bayes&#39;</span>    <span class="p">:</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1"># Cross Validation 10-fold</span>
+<span class="n">kf</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Model&#39;</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Accuracy&#39;</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;Std Dev&#39;</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">X_encoded</span><span class="p">,</span> <span class="n">y_clf</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">kf</span><span class="p">,</span> <span class="n">scoring</span><span class="o">=</span><span class="s1">&#39;accuracy&#39;</span><span class="p">)</span>
+    <span class="n">results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">scores</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">:</span><span class="s2">&lt;20</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">scores</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">       ± </span><span class="si">{</span><span class="n">scores</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="evaluasi-model">
+<h3>4.6 Evaluasi Model<a class="headerlink" href="#evaluasi-model" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------</span>
+<span class="c1"># A. Training dan Evaluasi Lengkap (Train-Test Split)</span>
+<span class="c1"># --------------------------------------------------</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">X_encoded</span><span class="p">,</span> <span class="n">y_clf</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_clf</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Train size: </span><span class="si">{</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, Test size: </span><span class="si">{</span><span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------</span>
+<span class="c1"># B. Evaluasi Setiap Model</span>
+<span class="c1"># --------------------------------------------------</span>
+<span class="n">evaluation_results</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+    <span class="n">acc</span>   <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">mse</span>   <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">rmse</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mse</span><span class="p">)</span>
+    <span class="n">mae</span>   <span class="o">=</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+    <span class="n">r2</span>    <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="n">evaluation_results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;Accuracy&#39;</span><span class="p">:</span> <span class="n">acc</span><span class="p">,</span> <span class="s1">&#39;MSE&#39;</span><span class="p">:</span> <span class="n">mse</span><span class="p">,</span> <span class="s1">&#39;RMSE&#39;</span><span class="p">:</span> <span class="n">rmse</span><span class="p">,</span> <span class="s1">&#39;MAE&#39;</span><span class="p">:</span> <span class="n">mae</span><span class="p">,</span> <span class="s1">&#39;R2&#39;</span><span class="p">:</span> <span class="n">r2</span>
+    <span class="p">}</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="o">*</span><span class="mi">50</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;MODEL: </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Accuracy : </span><span class="si">{</span><span class="n">acc</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">acc</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  MSE      : </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  RMSE     : </span><span class="si">{</span><span class="n">rmse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  MAE      : </span><span class="si">{</span><span class="n">mae</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  R²       : </span><span class="si">{</span><span class="n">r2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Classification Report:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span>
+          <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;Grade </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)],</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------</span>
+<span class="c1"># C. Visualisasi Perbandingan Model</span>
+<span class="c1"># --------------------------------------------------</span>
+<span class="n">metrics_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">evaluation_results</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">,</span> <span class="s1">&#39;RMSE&#39;</span><span class="p">,</span> <span class="s1">&#39;MAE&#39;</span><span class="p">,</span> <span class="s1">&#39;R2&#39;</span><span class="p">]</span>
+<span class="n">colors_bar</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#2196F3&#39;</span><span class="p">,</span> <span class="s1">&#39;#4CAF50&#39;</span><span class="p">,</span> <span class="s1">&#39;#FF9800&#39;</span><span class="p">,</span> <span class="s1">&#39;#9C27B0&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">metric</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">metrics</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">idx</span> <span class="o">//</span> <span class="mi">2</span><span class="p">][</span><span class="n">idx</span> <span class="o">%</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="n">bars</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">metrics_df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">metrics_df</span><span class="p">[</span><span class="n">metric</span><span class="p">],</span>
+                  <span class="n">color</span><span class="o">=</span><span class="n">colors_bar</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Perbandingan </span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">metric</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+
+    <span class="c1"># Tambahkan nilai di atas bar</span>
+    <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">bars</span><span class="p">:</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">height</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+                    <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">bar</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_width</span><span class="p">()</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span>
+                    <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">,</span>
+                    <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Perbandingan Metrik Evaluasi Antar Model&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;perbandingan_model.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------</span>
+<span class="c1"># D. Confusion Matrix — Random Forest (model terbaik)</span>
+<span class="c1"># --------------------------------------------------</span>
+<span class="n">rf_model</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">rf_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred_rf</span> <span class="o">=</span> <span class="n">rf_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="n">grade_labels_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Fail&#39;</span><span class="p">,</span> <span class="s1">&#39;DD&#39;</span><span class="p">,</span> <span class="s1">&#39;DC&#39;</span><span class="p">,</span> <span class="s1">&#39;CC&#39;</span><span class="p">,</span> <span class="s1">&#39;CB&#39;</span><span class="p">,</span> <span class="s1">&#39;BB&#39;</span><span class="p">,</span> <span class="s1">&#39;BA&#39;</span><span class="p">,</span> <span class="s1">&#39;AA&#39;</span><span class="p">]</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_rf</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span>
+            <span class="n">xticklabels</span><span class="o">=</span><span class="n">grade_labels_list</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">cm</span><span class="p">)],</span>
+            <span class="n">yticklabels</span><span class="o">=</span><span class="n">grade_labels_list</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">cm</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Prediksi&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Aktual&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Confusion Matrix — Random Forest</span><span class="se">\n</span><span class="s1">(Model Terbaik)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;confusion_matrix_rf.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Accuracy Random Forest: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred_rf</span><span class="p">)</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------</span>
+<span class="c1"># E. Feature Importance — Random Forest</span>
+<span class="c1"># --------------------------------------------------</span>
+<span class="n">feat_importance</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">rf_model</span><span class="o">.</span><span class="n">feature_importances_</span><span class="p">,</span>
+                            <span class="n">index</span><span class="o">=</span><span class="n">X_encoded</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">feat_importance</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.85</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Top 15 Fitur Paling Penting — Random Forest&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Fitur&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Feature Importance Score&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;feature_importance.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Top 10 Fitur Terpenting:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">feat_importance</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="visualisasi-pohon-keputusan">
+<h3>4.7 Visualisasi Pohon Keputusan<a class="headerlink" href="#visualisasi-pohon-keputusan" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --------------------------------------------------</span>
+<span class="c1"># Visualisasi Decision Tree (max_depth=4 agar terbaca)</span>
+<span class="c1"># --------------------------------------------------</span>
+<span class="n">dt_model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">dt_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">dt_model</span><span class="p">,</span>
+          <span class="n">feature_names</span><span class="o">=</span><span class="n">X_encoded</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+          <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)],</span>
+          <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+          <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+          <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+          <span class="n">max_depth</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Visualisasi Decision Tree (Depth=4)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;decision_tree.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Tampilkan aturan pohon dalam teks</span>
+<span class="n">tree_rules</span> <span class="o">=</span> <span class="n">export_text</span><span class="p">(</span><span class="n">dt_model</span><span class="p">,</span>
+                         <span class="n">feature_names</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">X_encoded</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span>
+                         <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== ATURAN DECISION TREE (3 Level Pertama) ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">tree_rules</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="perbandingan-hasil-model">
+<h2>5. Perbandingan Hasil Model<a class="headerlink" href="#perbandingan-hasil-model" title="Link to this heading">#</a></h2>
+<section id="hasil-di-orange-regression-cross-validation-10-fold">
+<h3>Hasil di Orange (Regression — Cross Validation 10-Fold)<a class="headerlink" href="#hasil-di-orange-regression-cross-validation-10-fold" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>MSE</p></th>
+<th class="head"><p>RMSE</p></th>
+<th class="head"><p>MAE</p></th>
+<th class="head"><p>sMAPE</p></th>
+<th class="head"><p>R²</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Random Forest</strong></p></td>
+<td><p><strong>2.321</strong></p></td>
+<td><p><strong>1.524</strong></p></td>
+<td><p><strong>1.241</strong></p></td>
+<td><p>50.281</p></td>
+<td><p><strong>0.516</strong></p></td>
+<td><p>Terbaik</p></td>
+</tr>
+<tr class="row-odd"><td><p>kNN</p></td>
+<td><p>3.272</p></td>
+<td><p>1.809</p></td>
+<td><p>1.520</p></td>
+<td><p>57.215</p></td>
+<td><p>0.318</p></td>
+<td><p>Cukup</p></td>
+</tr>
+<tr class="row-even"><td><p>Tree (Decision Tree)</p></td>
+<td><p>3.284</p></td>
+<td><p>1.812</p></td>
+<td><p>1.322</p></td>
+<td><p>49.752</p></td>
+<td><p>0.315</p></td>
+<td><p>Cukup</p></td>
+</tr>
+<tr class="row-odd"><td><p>Naive Bayes</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>—</p></td>
+<td><p>Error (regression)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="analisis-perbandingan-probabilitas-model-orange">
+<h3>Analisis Perbandingan Probabilitas Model (Orange)<a class="headerlink" href="#analisis-perbandingan-probabilitas-model-orange" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>kNN</p></th>
+<th class="head"><p>Random Forest</p></th>
+<th class="head"><p>Tree</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>kNN</p></td>
+<td><p>—</p></td>
+<td><p>0.991</p></td>
+<td><p>0.513</p></td>
+</tr>
+<tr class="row-odd"><td><p>Random Forest</p></td>
+<td><p><strong>0.009</strong></p></td>
+<td><p>—</p></td>
+<td><p>0.159</p></td>
+</tr>
+<tr class="row-even"><td><p>Tree</p></td>
+<td><p>0.487</p></td>
+<td><p>0.841</p></td>
+<td><p>—</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Nilai <strong>Random Forest vs kNN = 0.009</strong> berarti ada probabilitas hanya 0.9% bahwa kNN lebih baik dari Random Forest. Ini <strong>konfirmasi kuat</strong> bahwa Random Forest adalah model yang unggul.</p>
+</section>
+<section id="insight-utama-dari-analisis">
+<h3>Insight Utama dari Analisis<a class="headerlink" href="#insight-utama-dari-analisis" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>COURSE ID</strong> adalah fitur paling penting (root node Decision Tree), menunjukkan bahwa jenis mata kuliah sangat mempengaruhi nilai akhir.</p></li>
+<li><p><strong>IPK semester sebelumnya (Var 29)</strong> berkorelasi kuat dengan performa akhir — mahasiswa dengan IPK tinggi cenderung mempertahankan performanya.</p></li>
+<li><p><strong>Kehadiran kelas (Var 22)</strong> terbukti signifikan secara statistik (p=0.023) terhadap IPK. Mahasiswa yang selalu hadir rata-rata IPK lebih tinggi (3.25 vs 2.71).</p></li>
+<li><p><strong>Random Forest</strong> unggul karena kemampuannya menangani banyak fitur dengan interaksi kompleks tanpa overfitting berlebih seperti single Decision Tree.</p></li>
+<li><p><strong>Naive Bayes</strong> tidak applicable untuk task regresi/ordinal ini di Orange. Di Python, GaussianNB dapat digunakan namun performa biasanya lebih rendah pada data yang bukan memenuhi asumsi Gaussian.</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan">
+<h2>6. Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Berdasarkan analisis lengkap menggunakan Orange Data Mining dan Google Colab:</p>
+<ol class="arabic simple">
+<li><p><strong>Dataset</strong> terdiri dari 145 mahasiswa dengan 31 fitur yang mencakup aspek personal, keluarga, dan kebiasaan belajar. Tidak ada missing values sehingga tidak diperlukan imputasi.</p></li>
+<li><p><strong>Eksplorasi Data (EDA)</strong> mengungkap bahwa:</p>
+<ul class="simple">
+<li><p>Mayoritas mahasiswa berusia 22–25 tahun</p></li>
+<li><p>IPK rata-rata semester lalu adalah 3.12 ± 1.3</p></li>
+<li><p>Kehadiran kelas berpengaruh signifikan terhadap IPK (p=0.023)</p></li>
+<li><p>Mahasiswa dengan jam belajar lebih banyak dan IPK sebelumnya lebih tinggi cenderung mendapat GRADE lebih baik</p></li>
+</ul>
+</li>
+<li><p><strong>Preprocessing</strong> yang dilakukan: penetapan GRADE sebagai target, STUDENT ID sebagai meta, dan Continuize untuk fitur kategorikal.</p></li>
+<li><p><strong>Evaluasi Model</strong> dengan Cross Validation 10-fold menunjukkan <strong>Random Forest</strong> sebagai model terbaik (R²=0.516, RMSE=1.524), diikuti kNN (R²=0.318) dan Decision Tree (R²=0.315). Naive Bayes tidak dapat digunakan karena ketidaksesuaian tipe data target.</p></li>
+<li><p><strong>Rekomendasi:</strong> Untuk meningkatkan performa model, dapat dilakukan hyperparameter tuning pada Random Forest, feature selection yang lebih selektif, atau mencoba model lain seperti Gradient Boosting / XGBoost.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="referensi">
+<h2>7. Referensi<a class="headerlink" href="#referensi" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Yilmaz, N. &amp; Şekeroğlu, B. (2019). <em>Higher Education Students Performance Evaluation</em> [Dataset]. UCI Machine Learning Repository. <a class="reference external" href="https://doi.org/10.24432/C51G82">https://doi.org/10.24432/C51G82</a></p></li>
+<li><p>Yilmaz, N., &amp; Şekeroğlu, B. (2019). <em>Student Performance Classification Using Artificial Intelligence Techniques</em>. Advances in Intelligent Systems and Computing, vol 1095.</p></li>
+<li><p>Orange Data Mining: <a class="reference external" href="https://orangedatamining.com">https://orangedatamining.com</a></p></li>
+<li><p>UCI Machine Learning Repository: <a class="reference external" href="https://archive.ics.uci.edu/dataset/856/higher+education+students+performance+evaluation">https://archive.ics.uci.edu/dataset/856/higher+education+students+performance+evaluation</a></p></li>
+<li><p>Scikit-learn Documentation: <a class="reference external" href="https://scikit-learn.org/stable/">https://scikit-learn.org/stable/</a></p></li>
+</ul>
+<hr class="docutils" />
+<p><em>Laporan ini dibuat untuk keperluan UAS Mata Kuliah Penambangan Data — Teknik Informatika Semester 4</em></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tugas-crawling-data-no2.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Peramalan Kadar NO₂ di Daerah Surabaya</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tugas-analisa-data.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">TUGAS ANALISA DATA</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-higher-education-students-performance-evaluation">Dataset: Higher Education Students Performance Evaluation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#uci-machine-learning-repository-id-856">UCI Machine Learning Repository — ID 856</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daftar-isi">Daftar Isi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-dataset">1. Deskripsi Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-variabel">2. Deskripsi Variabel</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-di-orange-data-mining">3. Analisis di Orange Data Mining</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#persiapan-load-data">3.1 Persiapan &amp; Load Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-awal-data-table-column-statistics">3.2 Eksplorasi Awal: Data Table &amp; Column Statistics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distribusi-data-distributions">3.3 Distribusi Data (Distributions)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot">3.4 Scatter Plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot">3.5 Box Plot</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#heat-map">3.6 Heat Map</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-select-columns-continuize">3.7 Preprocessing: Select Columns &amp; Continuize</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-select-columns-menentukan-fitur-target-dan-meta">A. Select Columns — Menentukan Fitur, Target, dan Meta</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-continuize-mengubah-fitur-kategorikal">B. Continuize — Mengubah Fitur Kategorikal</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan-evaluasi-test-and-score">3.8 Pemodelan &amp; Evaluasi: Test and Score</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-menambahkan-test-and-score">A. Menambahkan Test and Score</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-menambahkan-model-decision-tree">B. Menambahkan Model Decision Tree</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-menambahkan-model-naive-bayes-knn-dan-random-forest">C. Menambahkan Model Naive Bayes, kNN, dan Random Forest</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#d-hasil-evaluasi-test-and-score">D. Hasil Evaluasi Test and Score</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-pohon-keputusan-tree-viewer">3.9 Visualisasi Pohon Keputusan (Tree Viewer)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#confusion-matrix">3.10 Confusion Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#workflow-akhir-orange">3.11 Workflow Akhir Orange</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-di-google-colab-python">4. Analisis di Google Colab (Python)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#install-import-library">4.1 Install &amp; Import Library</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dataset">4.2 Load Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data-eda">4.3 Eksplorasi Data (EDA)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing">4.4 Preprocessing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pemodelan-klasifikasi">4.5 Pemodelan Klasifikasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model">4.6 Evaluasi Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualisasi-pohon-keputusan">4.7 Visualisasi Pohon Keputusan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-hasil-model">5. Perbandingan Hasil Model</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-di-orange-regression-cross-validation-10-fold">Hasil di Orange (Regression — Cross Validation 10-Fold)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-perbandingan-probabilitas-model-orange">Analisis Perbandingan Probabilitas Model (Orange)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#insight-utama-dari-analisis">Insight Utama dari Analisis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">6. Kesimpulan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#referensi">7. Referensi</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Rafli Khiyanuran Bazhari
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
